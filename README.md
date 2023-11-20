@@ -50,3 +50,7 @@ Manfaat atau Tujuan ReadQuest :
 1. *Unlogin* : Pengguna yang tidak login atau tidak memiliki akun, maka pengguna tetap dapat mengakses aplikasi seperti mengakses katalog buku tetapi dengan fitur yang jauh lebih sedikit.  
 2. *Login* : Pengguna yang memiliki akun dan sudah login, maka pengguna dapat memiliki fitur tambahan seperti memiliki wishlist, membuat buku, memulai forum diskusi dan memperoleh point.  
 3. *Admin* : Admin yang memiliki privilage otoritas yang lebih banyak dan lebih tinggi dibanding pengguna-pengguna lain, seperti dapat memeriksa info user, memblokir user, membuat quest dan sebagainya.  
+
+### Berita Acara
+------
+https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0
