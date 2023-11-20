@@ -1,5 +1,5 @@
 # ReadQuest
-
+![Alt text](ReadQuestLogo.png)
 
 ## Link Aplikasi
 
