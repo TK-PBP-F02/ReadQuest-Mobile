@@ -53,4 +53,4 @@ Manfaat atau Tujuan ReadQuest :
 
 ### Berita Acara
 ------
-[Berita Acara](https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)
+[Berita Acara](https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)
