@@ -53,4 +53,5 @@ Manfaat atau Tujuan ReadQuest :
 
 ### Berita Acara
 ------
-https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0
+
+[Berita Acara][(http://readquest-f02-tk.pbp.cs.ui.ac.id](https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)
