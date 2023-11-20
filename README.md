@@ -28,20 +28,20 @@ Manfaat atau Tujuan ReadQuest :
 
 ### Modul Aplikasi ReadQuest
 ------
-1. *Round Table* : Forum diskusi dimana pengguna dapat berinteraksi satu sama lain, membahas segala macam topik seperti memberi tanggapan atau penilaian pada suatu buku.
+1. *Round Table* `Abbilhaidar Farras Zulfikar`  : Forum diskusi dimana pengguna dapat berinteraksi satu sama lain, membahas segala macam topik seperti memberi tanggapan atau penilaian pada suatu buku.
    - Login : Dapat langsung menambahkan forum baru dan membalas-balas forum dari pengguna lain.
    - Unlogin : Unlogin user dapat melihat forum-forum diskusi dan juga dapat membalas forum pengguna lain, namun harus mengisi username buat tampilannya.
-2. *Inventory* : Isi dari buku-buku wishlist buku yang ingin dibaca, buku yang sedang dibaca ataupun buku yang sudah pernah dibaca oleh pengguna.
+2. *Inventory* `Elena Zahra Kurniawan`  : Isi dari buku-buku wishlist buku yang ingin dibaca, buku yang sedang dibaca ataupun buku yang sudah pernah dibaca oleh pengguna.
    - Login : Berisi data-data buku yang sudah dibaca/ ingin dibaca/ ingin dibelli.
    - Unlogin : Berisi halaman inventory kosong dan memberikan tombol pilihan bagi pengguna untuk membuat akun atau login.
-3. *Make Journey Jurnal* : Pengguna membuat bukunya sendiri yang kemudian dapat dipublish dan dibaca oleh pengguna-pengguna lain.
+3. *Make Journey Jurnal* `Johanes Wisanggeni`  : Pengguna membuat bukunya sendiri yang kemudian dapat dipublish dan dibaca oleh pengguna-pengguna lain.
    - Login : Pengguna dapat membuat buku dan memilih untuk membuat buku yang dibuatnya public atau private.
    - Unlogin : Pengguna yang belum login juga dapat membuat bukunya sendiri namun harus mengisi data dirinya terlebih dahulu untuk melengkapi.
-5. *Quest* : Achivement-achivement atau misi-misi yang dapat dilaksanakan oleh pengguna untuk memperoleh point.
+4. *Quest* `Muhammad Hafiz`  : Achivement-achivement atau misi-misi yang dapat dilaksanakan oleh pengguna untuk memperoleh point.
    - Login : User dapat melihat dan menyelesaikan misi.
    - Unlogin : User yang tidak login hanya dapat melihat deskripsi dari user, tetapi tidak bisa menyelesaikan.
    - Admin : Membuat misi untuk user-user lain.
-7. *Leaderboard Ranking* : Ranking leaderboard untuk tiap user yang mendaftarkan dirinya ke dalam leaderboard untuk bisa di ranking di dalam sistem ranking leaderboard.
+5. *Leaderboard Ranking* `Rifqi Pratama Artyanto`  : Ranking leaderboard untuk tiap user yang mendaftarkan dirinya ke dalam leaderboard untuk bisa di ranking di dalam sistem ranking leaderboard.
    - Login : User dapat mellihat dan memasukan data dirinya untuk masuk ke dalam daftar ranking leaderboard.
    - Unlogin : User yang tidak login, hanya dapat melihat rangking leaderboard tetapi tidak dapat mendaftarkan diri ke dalam leaderboard.
 
