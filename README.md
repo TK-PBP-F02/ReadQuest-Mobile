@@ -51,6 +51,14 @@ Manfaat atau Tujuan ReadQuest :
 2. *Login* : Pengguna yang memiliki akun dan sudah login, maka pengguna dapat memiliki fitur tambahan seperti memiliki wishlist, membuat buku, memulai forum diskusi dan memperoleh point.  
 3. *Admin* : Admin yang memiliki privilage otoritas yang lebih banyak dan lebih tinggi dibanding pengguna-pengguna lain, seperti dapat memeriksa info user, memblokir user, membuat quest dan sebagainya.  
 
+### Integrasi Web
+------
+1. Menerapkan fungsi yang dapat mengembalikan response json di views project django, dan melakukan raouting url nya, sehingga web django dapat memberikan json dari model-model dari django ke flutter, sehingga model tersebut dapat digunakan dan diterapkan di project flutter.
+2. Menerapkan model pada project flutter, untuk dapat mengelola data json yang diambil dari django menjadi object model pada flutter, sehingga data tersebut dapat menjadi model/object yang dapat dimanfaatkan pada flutter.
+3. Pada flutter menambahkan fetch data, sehingga dapat melakukan request POST, GET, serta DELETE untuk mengambil data pada database project django.
+4. Melakukan pengelolahan data yang diterima dari json pada web, sehingga membentuk data tersebut menjadi object model yang sesuai pada flutter.
+5. Object model yang sudah disesuaikan kemudian ditampilkan di dalaam mobile aplication.
+
 ### Berita Acara
 ------
 [Berita Acara](https://docs.google.com/spreadsheets/d/1V1QlxNnpwR8CNAxFX-MXNgsBw5YUmY8ZR5nN1DG4D3M/edit?hl=id#gid=0)
