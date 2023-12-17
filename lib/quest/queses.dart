@@ -1,21 +1,22 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+import 'package:readquest/models/quest.dart';
 import 'dart:convert';
 
 import 'package:readquest/widgets/drawer.dart';
-import 'package:readquest/models/book.dart';
 
-class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class QuestPage extends StatefulWidget {
+  const QuestPage({Key? key}) : super(key: key);
 
   @override
-  _ProductPageState createState() => _ProductPageState();
+  // ignore: library_private_types_in_public_api
+  _QuestPageState createState() => _QuestPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
-  late Future<List<Books>> _futureProduct;
-  TextEditingController _searchController = TextEditingController();
+class _QuestPageState extends State<QuestPage> {
+  late Future<List<Quest>> _futureProduct;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -23,21 +24,19 @@ class _ProductPageState extends State<ProductPage> {
     _futureProduct = fetchProduct();
   }
 
-  Future<List<Books>> searchProduct(String query) async {
+  Future<List<Quest>> searchProduct(String query) async {
     if (query.isEmpty) {
-      // If the search bar is empty, return all books
       return await fetchProduct();
     } else {
-      // If the search bar is not empty, filter books based on the query
-      List<Books> allBooks = await fetchProduct();
-      return allBooks.where((book) {
-        return book.fields.title.toLowerCase().contains(query.toLowerCase());
+      List<Quest> allQuest = await fetchProduct();
+      return allQuest.where((quest) {
+        return quest.fields.name.toLowerCase().contains(query.toLowerCase());
       }).toList();
     }
   }
 
-  Future<List<Books>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/json-all/');
+  Future<List<Quest>> fetchProduct() async {
+    var url = Uri.parse('http://127.0.0.1:8000/quest/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -45,28 +44,26 @@ class _ProductPageState extends State<ProductPage> {
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    List<Books> listEquipment = [];
+    List<Quest> listQuest = [];
     for (var d in data) {
       if (d != null) {
-        listEquipment.add(Books.fromJson(d));
+        listQuest.add(Quest.fromJson(d));
       }
     }
-    return listEquipment;
+    return listQuest;
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final itemWidth = 200.0; // Set your desired item width
-    final crossAxisCount = (screenWidth / itemWidth).floor();
+    const itemWidth = 180.0;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Books'),
-        backgroundColor: Color.fromARGB(255, 90, 229, 237),
+        title: const Text('Quest'),
+        backgroundColor: const Color.fromARGB(255, 90, 229, 237),
       ),
       drawer: const Option(),
-      backgroundColor: Color.fromARGB(208, 99, 231, 101),
+      backgroundColor: const Color.fromARGB(208, 99, 231, 101),
       body: Column(
         children: [
           Padding(
@@ -78,8 +75,8 @@ class _ProductPageState extends State<ProductPage> {
                   _futureProduct = searchProduct(query);
                 });
               },
-              decoration: InputDecoration(
-                labelText: 'Search Books',
+              decoration: const InputDecoration(
+                labelText: 'Search Quest',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -95,7 +92,7 @@ class _ProductPageState extends State<ProductPage> {
                     return const Column(
                       children: [
                         Text(
-                          "Tidak ada data produk.",
+                          "No quest data available.",
                           style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
                         SizedBox(height: 8),
@@ -103,8 +100,8 @@ class _ProductPageState extends State<ProductPage> {
                     );
                   } else {
                     return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: itemWidth,
                         crossAxisSpacing: 16.0,
                         mainAxisSpacing: 16.0,
                       ),
@@ -114,33 +111,46 @@ class _ProductPageState extends State<ProductPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EquipmentDetailPage(
+                              builder: (context) => QuestDetailPage(
                                 equipment: snapshot.data![index],
                               ),
                             ),
                           );
                         },
                         child: Container(
-                          width: itemWidth,
                           padding: const EdgeInsets.all(12.0),
-                          color: Color.fromARGB(255, 68, 146, 71),
+                          decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Expanded(
-                                child: CachedNetworkImage(
-                                  placeholder: (context, url) => const CircularProgressIndicator(),
-                                  imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                              Text(
+                                "${snapshot.data![index].fields.name}",
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 8.0),
                               Text(
-                                "${snapshot.data![index].fields.title}",
+                                "Description: ${snapshot.data![index].fields.desc}",
                                 style: const TextStyle(
                                   fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white70,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -160,16 +170,16 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-class EquipmentDetailPage extends StatelessWidget {
-  final Books equipment;
+class QuestDetailPage extends StatelessWidget {
+  final Quest equipment;
 
-  const EquipmentDetailPage({Key? key, required this.equipment}) : super(key: key);
+  const QuestDetailPage({Key? key, required this.equipment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(equipment.fields.title),
+        title: Text(equipment.fields.name),
         backgroundColor: Colors.lightBlueAccent,
       ),
       backgroundColor: Colors.greenAccent,
@@ -178,21 +188,11 @@ class EquipmentDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CachedNetworkImage(
-                placeholder: (context, url) => const CircularProgressIndicator(),
-                imageUrl: Uri.encodeFull('${equipment.fields.imageUrl}'),
-              ),
-              Text("${equipment.fields.title}"),
-              Text("Author: ${equipment.fields.author}"),
-              Text("Published Date: ${equipment.fields.publishedDate}"),
-              Text("Publisher: ${equipment.fields.publisher}"),
-              Text("Publication Date: ${equipment.fields.publicationDate}"),
-              Text("Page: ${equipment.fields.pageCount}"),
-              Text("Category: ${equipment.fields.category}"),
-              Text("Description: ${equipment.fields.description}"),
+              Text(equipment.fields.name),
+              Text("Description: ${equipment.fields.desc}"),
               Center(
                 child: ElevatedButton(
-                  child: Text("Back To Equipment List"),
+                  child: const Text("Back To Quest List"),
                   onPressed: () {
                     Navigator.pop(context);
                   },

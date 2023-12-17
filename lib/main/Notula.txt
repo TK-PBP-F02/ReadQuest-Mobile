@@ -1,0 +1,17 @@
+Berhasil mengambil data buku
+Homepage selesai
+Selesai deskripsi buku
+
+NOTE PENTING :
+1. Jalankan : 
+flutter pub add provider
+flutter pub add pbp_django_auth
+
+FILE CHANGED :
+android/local.properties -> flutter.minSdkVersion=16
+android/app/build.gradle ->         minSdkVersion 16
+
+DEPENDECIES :
+flutter clean
+flutter pub get
+flutter pub run flutter_launcher_icons:main
