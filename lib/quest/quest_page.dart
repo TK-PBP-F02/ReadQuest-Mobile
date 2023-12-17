@@ -15,7 +15,7 @@ class QuestPage extends StatefulWidget {
 
 class _QuestPageState extends State<QuestPage> {
   Future<List<Quest>> fetchQuests() async {
-    var url = Uri.parse('http://127.0.0.1:8000/quest/json-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/quest/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},

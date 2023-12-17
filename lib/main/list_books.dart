@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -10,12 +11,13 @@ class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProductPageState createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
   late Future<List<Books>> _futureProduct;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -37,7 +39,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Books>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/json-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -57,16 +59,16 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final itemWidth = 200.0; // Set your desired item width
+    const itemWidth = 200.0; // Set your desired item width
     final crossAxisCount = (screenWidth / itemWidth).floor();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Books'),
-        backgroundColor: Color.fromARGB(255, 90, 229, 237),
+        backgroundColor: const Color.fromARGB(255, 90, 229, 237),
       ),
       drawer: const Option(),
-      backgroundColor: Color.fromARGB(208, 99, 231, 101),
+      backgroundColor: const Color.fromARGB(208, 99, 231, 101),
       body: Column(
         children: [
           Padding(
@@ -78,7 +80,7 @@ class _ProductPageState extends State<ProductPage> {
                   _futureProduct = searchProduct(query);
                 });
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search Books',
                 border: OutlineInputBorder(),
               ),
@@ -123,7 +125,7 @@ class _ProductPageState extends State<ProductPage> {
                         child: Container(
                           width: itemWidth,
                           padding: const EdgeInsets.all(12.0),
-                          color: Color.fromARGB(255, 68, 146, 71),
+                          color: const Color.fromARGB(255, 68, 146, 71),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,7 +134,7 @@ class _ProductPageState extends State<ProductPage> {
                                 child: CachedNetworkImage(
                                   placeholder: (context, url) => const CircularProgressIndicator(),
                                   imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
                                 ),
                               ),
                               const SizedBox(height: 8.0),
@@ -180,9 +182,9 @@ class EquipmentDetailPage extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 placeholder: (context, url) => const CircularProgressIndicator(),
-                imageUrl: Uri.encodeFull('${equipment.fields.imageUrl}'),
+                imageUrl: Uri.encodeFull(equipment.fields.imageUrl),
               ),
-              Text("${equipment.fields.title}"),
+              Text(equipment.fields.title),
               Text("Author: ${equipment.fields.author}"),
               Text("Published Date: ${equipment.fields.publishedDate}"),
               Text("Publisher: ${equipment.fields.publisher}"),
@@ -192,7 +194,7 @@ class EquipmentDetailPage extends StatelessWidget {
               Text("Description: ${equipment.fields.description}"),
               Center(
                 child: ElevatedButton(
-                  child: Text("Back To Equipment List"),
+                  child: const Text("Back To Equipment List"),
                   onPressed: () {
                     Navigator.pop(context);
                   },

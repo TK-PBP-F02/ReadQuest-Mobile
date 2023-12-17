@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readquest/main/Profile.dart';
 import 'package:readquest/main/homepage.dart';
 import 'package:readquest/main/list_books.dart';
 import 'package:readquest/quest/queses.dart';
@@ -113,11 +114,7 @@ class Option extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Text('Name : ${SharedVariable.user?.fields.username}'),
-                Text("Point : ${SharedVariable.user?.fields.point}"),
-                Text("Book Read : ${SharedVariable.user?.fields.readed}"),
-                Text("Book Bought : ${SharedVariable.user?.fields.buyed}"),
-                Text("Book Reviewed : ${SharedVariable.user?.fields.reviewed}"),
+                Text("Hallo, ${SharedVariable.user?.fields.username}"),
                 const Padding(padding: EdgeInsets.all(10)),
               ],
             ),
@@ -145,6 +142,19 @@ class Option extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProductPage(),
+                )
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.person_3_outlined),
+            title: const Text('Profile'),
+            // Bagian redirection ke MyHomePage
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
                 )
               );
             },
