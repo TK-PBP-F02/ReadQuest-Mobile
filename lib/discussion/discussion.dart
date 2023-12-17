@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:readquest/auth/login.dart';
 import 'package:readquest/discussion/forum_detailpage.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:readquest/discussion/widgets/forum_form.dart';
 
 import 'package:readquest/models/forum.dart';
 import 'package:readquest/widgets/drawer.dart';
@@ -52,9 +56,15 @@ class _ForumPageState extends State<ForumPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forum'),
+        title: const Center(
+            child: Text(
+          'Forum',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        )),
         backgroundColor: const Color.fromARGB(255, 90, 229, 237),
         actions: [
           IconButton(
@@ -79,10 +89,12 @@ class _ForumPageState extends State<ForumPage> {
                 ),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: 'Search forums...',
+                    hintText: 'Search',
+                    filled: true,
+                    fillColor: Colors.white,
                     prefixIcon: const Icon(
                       Icons.search,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -109,12 +121,33 @@ class _ForumPageState extends State<ForumPage> {
               padding: const EdgeInsets.only(
                   left: 10, right: 10, top: 10, bottom: 10),
               child: ElevatedButton(
-                  onPressed: () {},
-                  style: const ButtonStyle(
-                      shadowColor: MaterialStatePropertyAll(Colors.grey)),
+                  onPressed: () {
+                    if (request.loggedIn) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ForumFormPage()),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(100, 60),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      side: const BorderSide(
+                          color: Colors.black,
+                          width: 1,
+                          style: BorderStyle.solid)),
                   child: const Text(
                     "Add\nForum",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
                   )),
             )
@@ -191,21 +224,65 @@ class _ForumPageState extends State<ForumPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        forums[index].title,
-                                        style: const TextStyle(
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
+                                      Container(
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: const BoxDecoration(
+                                              color: Color(0xFF36FBFF),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  topRight:
+                                                      Radius.circular(10))),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      forums[index].title,
+                                                      style: const TextStyle(
+                                                        fontSize: 18.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 2),
+                                              Text(
+                                                "Discussing ${forums[index].bookTitle} by ${forums[index].bookAuthor}",
+                                                style: const TextStyle(
+                                                    overflow:
+                                                        TextOverflow.ellipsis),
+                                              ),
+                                              const SizedBox(height: 2),
+                                              Text(
+                                                "${forums[index].author} - Posted on ${formatDateTime(forums[index].createdAt)}",
+                                                style: const TextStyle(
+                                                    overflow:
+                                                        TextOverflow.ellipsis),
+                                              ),
+                                            ],
+                                          )),
+                                      const SizedBox(height: 10),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: Text(
+                                          forums[index].content,
+                                          style: const TextStyle(
+                                              overflow: TextOverflow.ellipsis),
                                         ),
                                       ),
                                       const SizedBox(height: 10),
-                                      Text(
-                                          "Discussing ${forums[index].bookTitle} by ${forums[index].bookAuthor}"),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                          "${forums[index].author} - Posted on ${formatDateTime(forums[index].createdAt)}"),
-                                      const SizedBox(height: 10),
-                                      Text(forums[index].content)
                                     ],
                                   ),
                                 ))));
