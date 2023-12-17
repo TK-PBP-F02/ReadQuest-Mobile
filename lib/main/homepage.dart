@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/auth/login.dart';
+import 'package:readquest/main/Profile.dart';
 import 'package:readquest/main/list_books.dart';
 import 'package:readquest/models/user.dart';
 import 'package:readquest/quest/queses.dart';
@@ -60,9 +61,15 @@ class Guild extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const LoginPage()),
             );
           }
+          if (item.name == "Profile") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          }
           if (item.name == "Log Out") {
             final response = await request.logout(
-                "http://127.0.0.1:8000/logout-flutter/");
+                "https://readquest-f02-tk.pbp.cs.ui.ac.id/logout-flutter/");
             String message = response["message"];
             if (response['status']) {
               String uname = response["username"];
@@ -120,6 +127,7 @@ class MyHomePage extends StatelessWidget {
     MyHomePage({Key? key}) : super(key: key);
     final List<OptionList> items = [
         OptionList("Books", Colors.lightBlue,Icons.book_outlined),
+        OptionList("Profile", Colors.cyanAccent, Icons.person_3_outlined),
         OptionList("Discussion", const Color.fromARGB(255, 0, 255, 132), Icons.chat_outlined),
         OptionList("Inventory", Colors.orangeAccent, Icons.backpack_outlined),
         OptionList("Journal", Colors.tealAccent, Icons.play_lesson_outlined),

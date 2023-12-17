@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                                 // 'username': username,
                                 // 'password': password,
                                 // });
-                                final response = await request.login("http://127.0.0.1:8000/login-flutter/", {
+                                final response = await request.login("https://readquest-f02-tk.pbp.cs.ui.ac.id/login-flutter/", {
                                 'username': username,
                                 'password': password,
                                 });
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                                     String uname = response['username'];
                                     int upk = response['pk'];
                                     // var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/user/json/$upk');
-                                    var url = Uri.parse('http://127.0.0.1:8000/user/json/$upk');
+                                    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/user/json/$upk');
                                     var responses = await http.get(
                                       url,
                                       headers: {"Content-Type": "application/json"},
