@@ -25,7 +25,8 @@ class _ForumPageState extends State<ForumPage> {
   String _query = "";
 
   Future<List<Forum>> fetchForums() async {
-    var url = Uri.parse('http://127.0.0.1:8000/forum/get-forum/');
+    var url =
+        Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/forum/get-forum/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -59,239 +60,254 @@ class _ForumPageState extends State<ForumPage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-            child: Text(
-          'Forum',
-          style: TextStyle(fontWeight: FontWeight.w600),
-        )),
-        backgroundColor: const Color.fromARGB(255, 90, 229, 237),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-      drawer: const Option(),
-      backgroundColor: const Color.fromARGB(208, 99, 231, 101),
-      body: Column(children: [
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  left: 10,
-                  bottom: 10,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Search',
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _query = value;
-                    });
-                  },
-                ),
-              ),
+        appBar: AppBar(
+          title: const Center(
+              child: Text(
+            'Forum',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          )),
+          backgroundColor: const Color.fromARGB(255, 90, 229, 237),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
-            Container(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, top: 10, bottom: 10),
-              child: ElevatedButton(
-                  onPressed: () {
-                    if (request.loggedIn) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ForumFormPage()),
-                      );
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(100, 60),
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.white,
-                      side: const BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                          style: BorderStyle.solid)),
-                  child: const Text(
-                    "Add\nForum",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  )),
-            )
           ],
         ),
-        Expanded(
-          child: FutureBuilder(
-              future: fetchForums(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
-                  return const Center(child: CircularProgressIndicator());
-                } else {
-                  if (snapshot.data!.length == 0) {
-                    return Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        _query.isNotEmpty
-                            ? Text(
-                                "No results found for '$_query'. Try again with other keywords",
-                                style: const TextStyle(fontSize: 20),
-                              )
-                            : const Text(
-                                "No forum yet",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                        const SizedBox(height: 10),
-                      ],
-                    );
+        drawer: const Option(),
+        backgroundColor: const Color.fromARGB(208, 99, 231, 101),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                      bottom: 10,
+                    ),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        filled: true,
+                        fillColor: Colors.white,
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: const BorderSide(color: Colors.black),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          borderSide: const BorderSide(color: Colors.black),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _query = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 10),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (request.loggedIn) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForumFormPage()),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(100, 60),
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          side: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid)),
+                      child: const Text(
+                        "Add\nForum",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      )),
+                )
+              ],
+            ),
+            FutureBuilder(
+                future: fetchForums(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return const Center(child: CircularProgressIndicator());
                   } else {
-                    List<Forum> forums = snapshot.data!;
-                    return ListView.builder(
-                        itemCount: forums.length,
-                        itemBuilder: (_, index) => Container(
-                            margin: const EdgeInsets.only(
-                                left: 10, right: 10, top: 5, bottom: 15),
-                            child: InkWell(
-                                onTap: () async {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ForumPageDetail(
-                                                forumId: forums[index].id,
-                                                bookTitle: snapshot
-                                                    .data![index].bookTitle,
-                                                bookAuthor: snapshot
-                                                    .data![index].bookAuthor,
-                                                bookThumbnail: snapshot
-                                                    .data![index].bookThumbnail,
-                                                title: forums[index].title,
-                                                content: forums[index].content,
-                                                author: forums[index].author,
-                                                createdAt: snapshot
-                                                    .data![index].createdAt,
-                                                isOwner: forums[index].isOwner,
-                                              )));
-                                },
-                                child: Container(
+                    if (snapshot.data!.length == 0) {
+                      return Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          _query.isNotEmpty
+                              ? Padding(
                                   padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4,
-                                        offset: const Offset(
-                                            0, 2), // changes position of shadow
-                                      ),
-                                    ],
+                                  child: Text(
+                                    "No results found for '$_query'. Try again with other keywords",
+                                    style: const TextStyle(fontSize: 18),
+                                    textAlign: TextAlign.center,
+                                  ))
+                              : const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    "No forum yet",
+                                    style: TextStyle(fontSize: 18),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: const BoxDecoration(
-                                              color: Color(0xFF36FBFF),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(10),
-                                                  topRight:
-                                                      Radius.circular(10))),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      forums[index].title,
-                                                      style: const TextStyle(
-                                                        fontSize: 18.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                ),
+                          const SizedBox(height: 10),
+                        ],
+                      );
+                    } else {
+                      List<Forum> forums = snapshot.data!;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: forums.length,
+                          itemBuilder: (_, index) => Container(
+                              margin: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 5, bottom: 15),
+                              child: InkWell(
+                                  onTap: () async {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ForumPageDetail(
+                                                  forumId: forums[index].id,
+                                                  bookTitle: snapshot
+                                                      .data![index].bookTitle,
+                                                  bookAuthor: snapshot
+                                                      .data![index].bookAuthor,
+                                                  bookThumbnail: snapshot
+                                                      .data![index]
+                                                      .bookThumbnail,
+                                                  title: forums[index].title,
+                                                  content:
+                                                      forums[index].content,
+                                                  author: forums[index].author,
+                                                  createdAt: snapshot
+                                                      .data![index].createdAt,
+                                                  isOwner:
+                                                      forums[index].isOwner,
+                                                )));
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 4,
+                                          offset: const Offset(0,
+                                              2), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            padding: const EdgeInsets.all(5),
+                                            decoration: const BoxDecoration(
+                                                color: Color(0xFF36FBFF),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(10),
+                                                    topRight:
+                                                        Radius.circular(10))),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        forums[index].title,
+                                                        style: const TextStyle(
+                                                          fontSize: 18.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text(
-                                                "Discussing ${forums[index].bookTitle} by ${forums[index].bookAuthor}",
-                                                style: const TextStyle(
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text(
-                                                "${forums[index].author} - Posted on ${formatDateTime(forums[index].createdAt)}",
-                                                style: const TextStyle(
-                                                    overflow:
-                                                        TextOverflow.ellipsis),
-                                              ),
-                                            ],
-                                          )),
-                                      const SizedBox(height: 10),
-                                      Padding(
-                                        padding: const EdgeInsets.all(5),
-                                        child: Text(
-                                          forums[index].content,
-                                          style: const TextStyle(
-                                              overflow: TextOverflow.ellipsis),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  "Discussing ${forums[index].bookTitle} by ${forums[index].bookAuthor}",
+                                                  style: const TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  "${forums[index].author} - Posted on ${formatDateTime(forums[index].createdAt)}",
+                                                  style: const TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
+                                                ),
+                                              ],
+                                            )),
+                                        const SizedBox(height: 10),
+                                        Padding(
+                                          padding: const EdgeInsets.all(5),
+                                          child: Text(
+                                            forums[index].content,
+                                            style: const TextStyle(
+                                                overflow:
+                                                    TextOverflow.ellipsis),
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                    ],
-                                  ),
-                                ))));
+                                        const SizedBox(height: 10),
+                                      ],
+                                    ),
+                                  ))));
+                    }
                   }
-                }
-              }),
-        )
-      ]),
-    );
+                }),
+          ]),
+        ));
   }
 }
 

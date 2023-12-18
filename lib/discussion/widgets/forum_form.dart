@@ -20,12 +20,12 @@ class _ForumFormPageState extends State<ForumFormPage> {
   final _formKey = GlobalKey<FormState>();
   Map<int, String> mapData = {};
   String _title = "";
-  int _book = 1;
+  int _book = 2;
   String _content = "";
 
   Future<Map<int, String>> fetchBookData() async {
     final url = Uri.parse(
-        'http://127.0.0.1:8000/json-all/'); // Replace with your API endpoint
+        'https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/'); // Replace with your API endpoint
     final response = await http.get(url);
 
     final List<dynamic> bookList = jsonDecode(response.body);
@@ -184,7 +184,7 @@ class _ForumFormPageState extends State<ForumFormPage> {
                     if (_formKey.currentState!.validate()) {
                       // Kirim ke Django dan tunggu respons
                       final response = await request.postJson(
-                          "http://127.0.0.1:8000/forum/create-forum/",
+                          "https://readquest-f02-tk.pbp.cs.ui.ac.id/forum/create-forum/",
                           jsonEncode(<String, String>{
                             'title': _title,
                             'book': _book.toString(),

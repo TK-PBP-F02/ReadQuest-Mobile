@@ -109,7 +109,7 @@ class _ReplyFormPageState extends State<ReplyFormPage> {
                     if (_formKey.currentState!.validate()) {
                       // Kirim ke Django dan tunggu respons
                       final response = await request.postJson(
-                          "http://127.0.0.1:8000/forum/create-replies/",
+                          "https://readquest-f02-tk.pbp.cs.ui.ac.id/forum/create-replies/",
                           jsonEncode(<String, String>{
                             'parent_forum': widget.forumId.toString(),
                             'content': _content,
@@ -119,6 +119,8 @@ class _ReplyFormPageState extends State<ReplyFormPage> {
                             .showSnackBar(const SnackBar(
                           content: Text("Reply is saved!"),
                         ));
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -43,8 +43,8 @@ class ForumPageDetail extends StatefulWidget {
 
 class _ForumPageDetailState extends State<ForumPageDetail> {
   Future<List<Replies>> fetchReplies() async {
-    var url =
-        Uri.parse('http://127.0.0.1:8000/forum/${widget.forumId}/get-replies/');
+    var url = Uri.parse(
+        'https://readquest-f02-tk.pbp.cs.ui.ac.id/forum/${widget.forumId}/get-replies/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -86,7 +86,8 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
         ),
         drawer: const Option(),
         backgroundColor: const Color.fromARGB(208, 99, 231, 101),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -139,7 +140,8 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
                                         ),
                                       ),
                                     ),
-                                    if (widget.isOwner)
+                                    if (widget.author ==
+                                        request.getJsonData()['username'])
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.red,
@@ -148,7 +150,7 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
                                         onPressed: () async {
                                           // Perform the DELETE request
                                           final url = Uri.parse(
-                                              'http://127.0.0.1:8000/forum/delete-forum-flutter/${widget.forumId}/');
+                                              'https://readquest-f02-tk.pbp.cs.ui.ac.id/forum/delete-forum-flutter/${widget.forumId}/');
                                           await http.delete(
                                             url,
                                             headers: {
@@ -188,52 +190,57 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
                         ),
                         Text(widget.content),
                         const SizedBox(height: 10),
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 10, bottom: 10),
-                          child: ElevatedButton(
-                              onPressed: () {
-                                if (request.loggedIn) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ReplyFormPage(
-                                              forumId: widget.forumId,
-                                              title: widget.title,
-                                              content: widget.content,
-                                              bookTitle: widget.bookTitle,
-                                              bookAuthor: widget.author,
-                                              bookThumbnail:
-                                                  widget.bookThumbnail,
-                                              author: widget.author,
-                                              createdAt: widget.createdAt,
-                                              isOwner: widget.isOwner,
-                                            )),
-                                  );
-                                } else {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage()),
-                                  );
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(120, 30),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.white,
-                                  side: const BorderSide(
-                                      color: Colors.black,
-                                      width: 1,
-                                      style: BorderStyle.solid)),
-                              child: const Text(
-                                "Add Reply",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600),
-                                textAlign: TextAlign.center,
-                              )),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 10, bottom: 10),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    if (request.loggedIn) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ReplyFormPage(
+                                                  forumId: widget.forumId,
+                                                  title: widget.title,
+                                                  content: widget.content,
+                                                  bookTitle: widget.bookTitle,
+                                                  bookAuthor: widget.author,
+                                                  bookThumbnail:
+                                                      widget.bookThumbnail,
+                                                  author: widget.author,
+                                                  createdAt: widget.createdAt,
+                                                  isOwner: widget.isOwner,
+                                                )),
+                                      );
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage()),
+                                      );
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(120, 30),
+                                      foregroundColor: Colors.white,
+                                      backgroundColor: Colors.white,
+                                      side: const BorderSide(
+                                          color: Colors.black,
+                                          width: 1,
+                                          style: BorderStyle.solid)),
+                                  child: const Text(
+                                    "Add Reply",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
+                                    textAlign: TextAlign.center,
+                                  )),
+                            )
+                          ],
                         )
                       ],
                     ),
@@ -261,61 +268,59 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
                 )
               ],
             ),
-            Expanded(
-                child: FutureBuilder(
-                    future: fetchReplies(),
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.data == null) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else {
-                        if (!snapshot.hasData) {
-                          return const Column(
-                            children: [
-                              Text(
-                                "No one have replied yet...",
-                                style: TextStyle(
-                                    color: Color(0xff59A5D8), fontSize: 20),
-                              ),
-                              SizedBox(height: 8),
-                            ],
-                          );
-                        } else {
-                          List<Replies> replies = snapshot.data!;
-                          return ListView.builder(
-                              itemCount: replies.length,
-                              itemBuilder: (_, index) => Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 10),
-                                  padding: const EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 2,
-                                        blurRadius: 4,
-                                        offset: const Offset(
-                                            0, 2), // changes position of shadow
-                                      ),
-                                    ],
+            FutureBuilder(
+                future: fetchReplies(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    if (snapshot.data!.length == 0) {
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "No one have replied yet...",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      );
+                    } else {
+                      List<Replies> replies = snapshot.data!;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: replies.length,
+                          itemBuilder: (_, index) => Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          "${replies[index].author} - Replied on ${formatDateTime(replies[index].createdAt)}"),
-                                      const SizedBox(height: 10),
-                                      Text(replies[index].content)
-                                    ],
-                                  )));
-                        }
-                      }
-                    }))
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      "${replies[index].author} - Replied on ${formatDateTime(replies[index].createdAt)}"),
+                                  const SizedBox(height: 10),
+                                  Text(replies[index].content)
+                                ],
+                              )));
+                    }
+                  }
+                })
           ],
-        ));
+        )));
   }
 }
 
