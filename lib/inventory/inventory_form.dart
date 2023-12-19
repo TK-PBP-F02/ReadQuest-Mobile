@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/inventory/list_inventory.dart';
+import 'package:readquest/user_var.dart';
 
 class InventoryFormPage extends StatefulWidget {
   const InventoryFormPage({super.key});
@@ -25,9 +26,9 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
               'Form Tambah Inventory',
             ),
           ),
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 90, 229, 237),
         ),
+        backgroundColor: Color.fromARGB(208, 99, 231, 101),
         // drawer: const LeftDrawer(),
         body: Form(
           key: _formKey,
@@ -62,21 +63,22 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.red),
-                      ),
-                      
+                    child: ElevatedButton(                    
                       onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                              // Kirim ke Django dan tunggu respons
-                              // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                               final response = await request.postJson(
                               "http://127.0.0.1:8000/create-inventory-flutter/",
-                              jsonEncode(<String, String>{
-                                  'name': _name,
-                              }));
+                              jsonEncode(<String, dynamic>{
+                                  'Inventory.inventory': [
+                                    {
+                                      "pk": 0,
+                                      "fields": {
+                                        "user": SharedVariable.user?.pk,
+                                        "name": _name,
+                                      }
+                                    }
+                                  ],
+                                }));
                               if (response['status'] == 'success') {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -85,6 +87,15 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(builder: (context) => InventoryPage()),
+                                  );
+                              } else if (response['status'] == 'exist') {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                  content: Text("Anda telah memiliki inventoris dengan nama tersebut"),
+                                  ));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => InventoryFormPage()),
                                   );
                               } else {
                                   ScaffoldMessenger.of(context)
@@ -98,7 +109,7 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
 
                       child: const Text(
                         "Save",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Color.fromARGB(0, 0, 0, 0)),
                       ),
                     ),
                   ),

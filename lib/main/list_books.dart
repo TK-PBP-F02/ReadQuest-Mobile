@@ -1,6 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:readquest/main/homepage.dart';
+import 'package:readquest/models/Inventory.dart';
+import 'package:readquest/user_var.dart';
 import 'dart:convert';
 
 import 'package:readquest/widgets/drawer.dart';
@@ -15,7 +20,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   Future<List<Books>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/json-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -108,20 +113,6 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-
-                        // Image.network('${snapshot.data![index].fields.thumbnail}'),
-
-                        // CachedNetworkImage(
-                        //   placeholder: (context, url) => const CircularProgressIndicator(),
-                        //   imageUrl: '${snapshot.data![index].fields.thumbnail}',
-                        // )
-
-                        
-
-                        // const SizedBox(height: 10),
-                        // Text("Amount : ${snapshot.data![index].fields.amount}"),
-                        // const SizedBox(height: 10),
-                        // Text("Description : ${snapshot.data![index].fields.description}")
                       ],
                     ),
                   ),
@@ -135,49 +126,205 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-class EquipmentDetailPage extends StatelessWidget {
+class EquipmentDetailPage extends StatefulWidget {
   final Books equipment;
 
-  const EquipmentDetailPage({Key? key, required this.equipment}) : super(key: key);
+  EquipmentDetailPage({Key? key, required this.equipment}) : super(key: key);
+
+  @override
+  _EquipmentDetailPageState createState() => _EquipmentDetailPageState();
+}
+
+class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
+  late Inventory? selectedFolder = null;
+  late List<Inventory> listInventories = [];
+
+  @override
+  void initState() {
+    super.initState();
+    listInventories = [];
+    fetchInventories();
+  }
+
+  Future<void> fetchInventories() async {
+    if (SharedVariable.user != null) {
+      List<Inventory> inventories = await _fetchInventories();
+      setState(() {
+        listInventories = inventories;
+        selectedFolder = inventories.isNotEmpty ? inventories.first : null;
+      });
+    }
+  }
+
+  Future<List<Inventory>> _fetchInventories() async {
+    var url = Uri.parse('http://127.0.0.1:8000/get-inventory-all/');
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    var data = jsonDecode(response.body);
+
+    List<Inventory> inventories = [];
+    int loggedInUserId = SharedVariable.user!.pk;
+
+    for (var inventoryJson in data) {
+      if (inventoryJson != null) {
+        var inventory = Inventory.fromJson(inventoryJson);
+        if (inventory.fields.user == loggedInUserId) {
+          inventories.add(inventory);
+        }
+      }
+    }
+    return inventories;
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Implement the UI for the equipment detail page using the 'equipment' data.
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(equipment.fields.title),
-        backgroundColor: Colors.lightBlueAccent,
+      title: Text(widget.equipment.fields.title),
+      backgroundColor: Colors.lightBlueAccent,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyHomePage(),
+            ),
+          );
+        },
       ),
+    ),
       backgroundColor: Colors.greenAccent,
       body: SingleChildScrollView(
         child: Center(
-          child:Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CachedNetworkImage(
                 placeholder: (context, url) => const CircularProgressIndicator(),
-                imageUrl: Uri.encodeFull('${equipment.fields.imageUrl}'),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                imageUrl: Uri.encodeFull('${widget.equipment.fields.imageUrl}'),
               ),
-              Text("${equipment.fields.title}"),
-              Text("Author: ${equipment.fields.author}"),
-              Text("Published Date: ${equipment.fields.publishedDate}"),
-              Text("Publisher: ${equipment.fields.publisher}"),
-              Text("Publication Date: ${equipment.fields.publicationDate}"),
-              Text("Page: ${equipment.fields.pageCount}"),
-              Text("Category: ${equipment.fields.category}"),
-              Text("Description: ${equipment.fields.description}"),
+              Text("${widget.equipment.fields.title}"),
+              Text("Author: ${widget.equipment.fields.author}"),
+              Text("Published Date: ${widget.equipment.fields.publishedDate}"),
+              Text("Publisher: ${widget.equipment.fields.publisher}"),
+              Text("Publication Date: ${widget.equipment.fields.publicationDate}"),
+              Text("Page: ${widget.equipment.fields.pageCount}"),
+              Text("Category: ${widget.equipment.fields.category}"),
+              Text("Description: ${widget.equipment.fields.description}"),
+              Text(""),
+              if (SharedVariable.user != null)
+                Form(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Add to Inventory:'),
+                                DropdownButtonFormField<Inventory>(
+                                  value: selectedFolder,
+                                  items: listInventories.map((inventory) {
+                                    return DropdownMenuItem<Inventory>(
+                                      value: inventory,
+                                      child: Text(inventory.fields.name),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedFolder = value;
+                                      // print(selectedFolder?.pk); // Access the pk of the selected folder
+                                    });
+                                  },
+                                ),
+
+                              ],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final response = await request.postJson(
+                                "http://127.0.0.1:8000/add-book-to-inventory-flutter/${widget.equipment.pk}/",
+                                jsonEncode(<String, dynamic>{
+                                  'Inventory.inventorybook': [
+                                    {
+                                      "pk": 0,
+                                      "fields": {
+                                        "inventory": selectedFolder?.pk,
+                                        "book": widget.equipment.pk,
+                                      }
+                                    }
+                                  ],
+                                }),
+                              );
+
+                              // print(response);
+
+                              if (response['status'] == 'success') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Buku berhasil disimpan di inventoris!"),
+                                  ),
+                                );
+                                
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EquipmentDetailPage(
+                                      equipment: widget.equipment,
+                                    ),
+                                  ),
+                                );
+
+
+                              } else if (response['status'] == 'exist') {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Anda telah menyimpan buku ini pada inventoris yang Anda pilih"),
+                                  ),
+                                );
+                                
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EquipmentDetailPage(
+                                      equipment: widget.equipment,
+                                    ),
+                                  ),
+                                );
+                                } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Terdapat kesalahan, silakan coba lagi."),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Text('Add to Inventory'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              else
+                Container(),
               Center(
                 child: ElevatedButton(
                   child: Text("Back To Equipment List"),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
-              )
-              // Add more details as needed
+              ),
             ],
-          )
+          ),
         ),
       ),
     );
