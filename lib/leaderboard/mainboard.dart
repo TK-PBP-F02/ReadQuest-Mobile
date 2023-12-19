@@ -26,7 +26,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   }
 
   Future<User?> fetchData(int entry) async {
-    print(entry);
     var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/user/json/$entry/');
     var response = await http.get(
       url,
@@ -70,7 +69,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           backgroundColor: Colors.lightBlueAccent,
           title: const Text('Leaderboard'),
         ),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromARGB(255, 234, 234, 234),
         drawer: const Option(),
         body: FutureBuilder<List<Display>>(
           future: _futureProduct,
@@ -185,7 +184,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         backgroundColor: Colors.lightBlueAccent,
         title: const Text('Leaderboard'),
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 220, 218, 218),
       drawer: const Option(),
       body: FutureBuilder<List<Display>>(
         future: _futureProduct,
@@ -289,7 +288,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         backgroundColor: Colors.lightBlueAccent,
         title: const Text('Leaderboard'),
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 226, 224, 224),
       drawer: const Option(),
       body: FutureBuilder<List<Display>>(
         future: _futureProduct,
@@ -321,7 +320,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
+                      primary: Color.fromARGB(255, 196, 242, 238),
                       textStyle: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -423,7 +422,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.teal[200],
+                        primary: const Color.fromARGB(255, 142, 227, 219),
                         textStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
