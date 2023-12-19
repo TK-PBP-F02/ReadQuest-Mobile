@@ -39,6 +39,10 @@ dependencies:
   pbp_django_auth: ^0.4.0
   cached_network_image: ^3.3.0
   http: ^1.1.0
+  collection: ^1.15.0
+  flutter_form_builder: ^9.1.1
+  form_builder_validators: ^9.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +72,18 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/images/
+    - assets/gif/
+  
+  fonts:
+    - family: VT323
+      fonts:
+        - asset: assets/fonts/VT323/VT323-Regular.ttf
+
+    - family: Silkscreen
+      fonts:
+        - asset: assets/fonts/Silkscreen/Silkscreen-Regular.ttf
+        - asset: assets/fonts/Silkscreen/Silkscreen-Bold.ttf
+          weight: 700
 
   # To add assets to your application, add an assets section, like this:
   # assets:

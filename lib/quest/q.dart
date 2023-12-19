@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -99,7 +98,7 @@ class _QuestPageState extends State<QuestPage> {
           backgroundColor: const Color.fromARGB(255, 90, 229, 237),
         ),
         drawer: const Option(),
-        backgroundColor: Color.fromARGB(255, 219, 218, 218),
+        backgroundColor: const Color.fromARGB(208, 99, 231, 101),
         body: Column(
           children: [
             Padding(
@@ -122,7 +121,7 @@ class _QuestPageState extends State<QuestPage> {
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("World Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323'))
+                Text("World Quest", style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'VT323'))
               ],
             ),
             const SizedBox(height: 20),
@@ -165,7 +164,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -213,7 +212,7 @@ class _QuestPageState extends State<QuestPage> {
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Books Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323'))
+                Text("Books Quest", style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'VT323'))
               ],
             ),
             const SizedBox(height: 20),
@@ -256,7 +255,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -310,7 +309,7 @@ class _QuestPageState extends State<QuestPage> {
           backgroundColor: const Color.fromARGB(255, 90, 229, 237),
         ),
         drawer: const Option(),
-        backgroundColor: Color.fromARGB(208, 234, 234, 234),
+        backgroundColor: const Color.fromARGB(208, 99, 231, 101),
         body: Column(
           children: [
             Padding(
@@ -360,7 +359,7 @@ class _QuestPageState extends State<QuestPage> {
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("World Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323')),
+                Text("World Quest", style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'VT323')),
               ],
             ),
             const SizedBox(height: 5),
@@ -403,7 +402,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -451,7 +450,7 @@ class _QuestPageState extends State<QuestPage> {
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Books Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323')),
+                Text("Books Quest", style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'VT323')),
               ],
             ),
             const SizedBox(height: 5),
@@ -494,7 +493,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -548,7 +547,7 @@ class _QuestPageState extends State<QuestPage> {
           backgroundColor: const Color.fromARGB(255, 90, 229, 237),
         ),
         drawer: const Option(),
-        backgroundColor: Color.fromARGB(255, 238, 238, 238),
+        backgroundColor: const Color.fromARGB(208, 99, 231, 101),
         body: Column(
           children: [
             Padding(
@@ -566,13 +565,6 @@ class _QuestPageState extends State<QuestPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("World Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323')),
-              ],
             ),
             Expanded(
               child: FutureBuilder(
@@ -613,7 +605,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -693,7 +685,7 @@ class _QuestPageState extends State<QuestPage> {
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Books Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323'))
+                Text("Books Quest", style: TextStyle(fontSize: 30, color: Colors.white, fontFamily: 'VT323'))
               ],
             ),
             const SizedBox(height: 20),
@@ -736,7 +728,7 @@ class _QuestPageState extends State<QuestPage> {
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
+                              color: Colors.teal,
                               borderRadius: BorderRadius.circular(12.0),
                               boxShadow: [
                                 BoxShadow(
@@ -789,6 +781,9 @@ class _QuestPageState extends State<QuestPage> {
 
 class QuestDetailPage extends StatelessWidget {
   final Quest equipment;
+
+  
+
   const QuestDetailPage({Key? key, required this.equipment}) : super(key: key);
 
   @override
@@ -798,7 +793,7 @@ class QuestDetailPage extends StatelessWidget {
         title: Text(equipment.fields.name),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      backgroundColor: Color.fromARGB(255, 236, 236, 236),
+      backgroundColor: Colors.greenAccent,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -834,7 +829,7 @@ class QuestDetailPageBook extends StatelessWidget {
         title: Text(equipment.fields.name),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      backgroundColor: const Color.fromARGB(255, 235, 235, 235),
+      backgroundColor: Colors.greenAccent,
       body: FutureBuilder<Books>(
         future: fetchBook(),
         builder: (context, snapshot) {

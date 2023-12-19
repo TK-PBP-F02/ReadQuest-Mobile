@@ -15,7 +15,7 @@ class QuestPage extends StatefulWidget {
 
 class _QuestPageState extends State<QuestPage> {
   Future<List<Quest>> fetchQuests() async {
-    var url = Uri.parse('http://127.0.0.1:8000/quest/json-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/quest/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -326,7 +326,6 @@ class QuestDetailPage extends StatelessWidget {
   final Quest quest;
 
   const QuestDetailPage({Key? key, required this.quest}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

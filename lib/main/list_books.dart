@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/main/homepage.dart';
 import 'package:readquest/models/Inventory.dart';
 import 'package:readquest/user_var.dart';
+import 'package:readquest/quest/queses.dart';
 import 'dart:convert';
 
 import 'package:readquest/widgets/drawer.dart';
@@ -15,10 +17,33 @@ class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProductPageState createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
+  late Future<List<Books>> _futureProduct;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _futureProduct = fetchProduct();
+  }
+
+  Future<List<Books>> searchProduct(String query) async {
+    if (query.isEmpty) {
+      // If the search bar is empty, return all books
+      return await fetchProduct();
+    } else {
+      // If the search bar is not empty, filter books based on the query
+      List<Books> allBooks = await fetchProduct();
+      return allBooks.where((book) {
+        return book.fields.title.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+  }
+
   Future<List<Books>> fetchProduct() async {
     var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
     var response = await http.get(
@@ -40,50 +65,43 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    const itemWidth = 200.0; // Set your desired item width
+    final crossAxisCount = (screenWidth / itemWidth).floor();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Books'),
-        backgroundColor: Color.fromARGB(255, 90, 229, 237),
+        backgroundColor: Color.fromARGB(167, 123, 243, 249),
       ),
       drawer: const Option(),
-      backgroundColor: Color.fromARGB(208, 99, 231, 101),
-      body: FutureBuilder(
-        future: fetchProduct(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            if (!snapshot.hasData) {
-              return const Column(
-                children: [
-                  Text(
-                    "Tidak ada data produk.",
-                    style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-                  ),
-                  SizedBox(height: 8),
-                ],
-              );
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EquipmentDetailPage(
-                          equipment: snapshot.data![index],
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    padding: const EdgeInsets.all(20.0),
-                    color: Color.fromARGB(255, 68, 146, 71),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _searchController,
+              onChanged: (query) {
+                setState(() {
+                  _futureProduct = searchProduct(query);
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Search Books',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder(
+              future: _futureProduct,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  if (!snapshot.hasData) {
+                    return const Column(
                       children: [
                         CachedNetworkImage(
                           placeholder: (context, url) => const CircularProgressIndicator(),
@@ -104,12 +122,53 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        
-                        Text(
-                          "${snapshot.data![index].fields.author}",
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                        SizedBox(height: 8),
+                      ],
+                    );
+                  } else {
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        crossAxisSpacing: 16.0,
+                        mainAxisSpacing: 16.0,
+                      ),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EquipmentDetailPage(
+                                equipment: snapshot.data![index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: itemWidth,
+                          padding: const EdgeInsets.all(12.0),
+                          color: Color.fromARGB(255, 111, 218, 239),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: CachedNetworkImage(
+                                  placeholder: (context, url) => const CircularProgressIndicator(),
+                                  imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                "${snapshot.data![index].fields.title}",
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -197,13 +256,13 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
           );
         },
       ),
-    ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 30),
               CachedNetworkImage(
                 placeholder: (context, url) => const CircularProgressIndicator(),
                 imageUrl: Uri.encodeFull('${widget.equipment.fields.imageUrl}'),
@@ -317,7 +376,7 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                 Container(),
               Center(
                 child: ElevatedButton(
-                  child: Text("Back To Equipment List"),
+                  child: const Text("Back To Equipment List"),
                   onPressed: () {
                     Navigator.pop(context);
                   },
