@@ -1,11 +1,39 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/main/homepage.dart';
-import 'package:readquest/widgets/drawer.dart';
+import 'package:readquest/models/book.dart';
+import 'package:readquest/user_var.dart';
+void main() async {
+  // Fetch the books data
+  List<Books> books = await fetchProduct();
 
-void main() {
+  // Set the value in SharedVariable
+  SharedVariable.setList(books);
+
+  // Run the app
   runApp(const MyApp());
+}
+
+Future<List<Books>> fetchProduct() async {
+  var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
+  var response = await http.get(
+    url,
+    headers: {"Content-Type": "application/json"},
+  );
+
+  var data = jsonDecode(utf8.decode(response.bodyBytes));
+
+  List<Books> listEquipment = [];
+  for (var d in data) {
+    if (d != null) {
+      listEquipment.add(Books.fromJson(d));
+    }
+  }
+  return listEquipment;
 }
 
 class MyApp extends StatelessWidget {
