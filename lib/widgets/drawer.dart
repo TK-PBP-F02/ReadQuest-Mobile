@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readquest/inventory/list_inventory.dart';
 import 'package:readquest/leaderboard/mainboard.dart';
 import 'package:readquest/discussion/discussion.dart';
 import 'package:readquest/main/Profile.dart';
@@ -73,10 +74,18 @@ class Option extends StatelessWidget {
                     ));
               },
             ),
-            const ListTile(
-              leading: Icon(Icons.backpack_outlined),
-              title: Text('Inventory'),
-            ),
+            ListTile(
+            leading: const Icon(Icons.backpack_outlined),
+            title: const Text('Inventory'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InventoryPage(),
+                )
+              );
+            },
+          ),
             const ListTile(
               leading: Icon(Icons.play_lesson_outlined),
               title: Text('Journal'),
@@ -179,10 +188,18 @@ class Option extends StatelessWidget {
                     ));
               },
             ),
-            const ListTile(
-              leading: Icon(Icons.backpack_outlined),
-              title: Text('Inventory'),
-            ),
+            ListTile(
+            leading: Icon(Icons.backpack_outlined),
+            title: Text('Inventory'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InventoryPage(),
+                )
+              );
+            },
+          ),
             const ListTile(
               leading: Icon(Icons.play_lesson_outlined),
               title: Text('Journal'),

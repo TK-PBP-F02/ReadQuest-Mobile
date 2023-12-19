@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readquest/inventory/list_inventory.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/auth/login.dart';
@@ -46,6 +47,12 @@ class Guild extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProductPage()),
+            );
+          }
+          if(item.name == "Inventory"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InventoryPage()),
             );
           }
           if (item.name == "Quest") {
