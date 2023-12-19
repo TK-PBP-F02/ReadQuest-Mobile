@@ -3,6 +3,7 @@ import 'package:readquest/inventory/list_inventory.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/auth/login.dart';
+import 'package:readquest/journal/list_books_journal.dart';
 import 'package:readquest/leaderboard/mainboard.dart';
 import 'package:readquest/discussion/discussion.dart';
 import 'package:readquest/main/Profile.dart';
@@ -84,6 +85,30 @@ class Guild extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => const ProfilePage()),
             );
+          }
+          if (item.name == "Journal") {
+            if(SharedVariable.user != null){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JournalPage(books: [],)),
+              );
+            } else{
+              showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Login First!'),
+                      //content: Text(response['message']),
+                      actions: [
+                        TextButton(
+                          child: const Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+            }
           }
           if (item.name == "Log Out") {
             final response = await request.logout(

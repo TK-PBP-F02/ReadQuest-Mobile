@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readquest/inventory/list_inventory.dart';
+import 'package:readquest/journal/list_books_journal.dart';
 import 'package:readquest/leaderboard/mainboard.dart';
 import 'package:readquest/discussion/discussion.dart';
 import 'package:readquest/main/Profile.dart';
@@ -58,7 +59,7 @@ class Option extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ProductPage(),
+                      //builder: (context) => const ProductPage(),
                     ));
               },
             ),
@@ -86,10 +87,36 @@ class Option extends StatelessWidget {
               );
             },
           ),
-            const ListTile(
-              leading: Icon(Icons.play_lesson_outlined),
-              title: Text('Journal'),
-            ),
+          ListTile(
+            leading: Icon(Icons.play_lesson_outlined),
+            title: Text('Journal'),
+            onTap: () {
+              if (SharedVariable.user != null) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => JournalPage(books: []),
+                  ),
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Login First!'),
+                    actions: [
+                      TextButton(
+                        child: const Text('OK'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              }
+            },
+          ),
+
             ListTile(
               leading: const Icon(Icons.format_list_numbered_outlined),
               title: const Text('Leader Board'),
@@ -200,9 +227,17 @@ class Option extends StatelessWidget {
               );
             },
           ),
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.play_lesson_outlined),
               title: Text('Journal'),
+              onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => JournalPage(books: [],),
+                )
+              );
+            },
             ),
             ListTile(
               leading: const Icon(Icons.format_list_numbered_outlined),
