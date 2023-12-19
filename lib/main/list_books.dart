@@ -39,7 +39,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Books>> fetchProduct() async {
-    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
+    var url = Uri.parse('http://127.0.0.1:8000/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},

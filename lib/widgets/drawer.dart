@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readquest/leaderboard/mainboard.dart';
 import 'package:readquest/discussion/discussion.dart';
 import 'package:readquest/main/Profile.dart';
 import 'package:readquest/main/homepage.dart';
@@ -60,6 +61,7 @@ class Option extends StatelessWidget {
                     ));
               },
             ),
+
             ListTile(
               leading: const Icon(Icons.chat_outlined),
               title: const Text('Discussion'),
@@ -79,9 +81,16 @@ class Option extends StatelessWidget {
               leading: Icon(Icons.play_lesson_outlined),
               title: Text('Journal'),
             ),
-            const ListTile(
-              leading: Icon(Icons.format_list_numbered_outlined),
-              title: Text('Leader Board'),
+            ListTile(
+              leading: const Icon(Icons.format_list_numbered_outlined),
+              title: const Text('Leader Board'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LeaderboardPage(),
+                    ));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.privacy_tip_outlined),
@@ -178,9 +187,16 @@ class Option extends StatelessWidget {
               leading: Icon(Icons.play_lesson_outlined),
               title: Text('Journal'),
             ),
-            const ListTile(
-              leading: Icon(Icons.format_list_numbered_outlined),
-              title: Text('Leader Board'),
+            ListTile(
+              leading: const Icon(Icons.format_list_numbered_outlined),
+              title: const Text('Leader Board'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LeaderboardPage(),
+                    ));
+              },
             ),
             ListTile(
               leading: const Icon(Icons.privacy_tip_outlined),

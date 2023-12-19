@@ -326,7 +326,6 @@ class QuestDetailPage extends StatelessWidget {
   final Quest quest;
 
   const QuestDetailPage({Key? key, required this.quest}) : super(key: key);
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

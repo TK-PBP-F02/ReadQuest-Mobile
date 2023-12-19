@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:readquest/auth/login.dart';
+import 'package:readquest/leaderboard/mainboard.dart';
 import 'package:readquest/discussion/discussion.dart';
 import 'package:readquest/main/Profile.dart';
 import 'package:readquest/main/list_books.dart';
@@ -54,6 +55,12 @@ class Guild extends StatelessWidget {
                 builder: (context) => const QuestPage(),
               ),
             );
+          }
+          if (item.name == "Leader Board") {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LeaderboardPage()));
           }
           if (item.name == "Login") {
             Navigator.push(

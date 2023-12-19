@@ -1,3 +1,4 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -781,9 +782,6 @@ class _QuestPageState extends State<QuestPage> {
 
 class QuestDetailPage extends StatelessWidget {
   final Quest equipment;
-
-  
-
   const QuestDetailPage({Key? key, required this.equipment}) : super(key: key);
 
   @override
