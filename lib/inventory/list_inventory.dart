@@ -19,7 +19,7 @@ class InventoryPage extends StatefulWidget {
 
 class _InventoryPageState extends State<InventoryPage> {
   Future<List<Inventory>> fetchInventories() async {
-    var url = Uri.parse('http://127.0.0.1:8000/get-inventory-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/get-inventory-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -77,7 +77,7 @@ class _InventoryPageState extends State<InventoryPage> {
                   onTap: () async {
                     int inventoryId = snapshot.data![index].pk;
                     final response = await request.get(
-                      "http://127.0.0.1:8000/get-inventory-books/${inventoryId}"
+                      "https://readquest-f02-tk.pbp.cs.ui.ac.id/get-inventory-books/${inventoryId}"
                     );
                     
                     List<dynamic> bookIdsInInventory = response.map((inventoryBook) {
@@ -89,7 +89,7 @@ class _InventoryPageState extends State<InventoryPage> {
                     for (var bookId in bookIdsInInventory) {
                       List<String> bookData = [];
                       final bookResponse = await request.get(
-                        "http://127.0.0.1:8000/json-book/${bookId}/"
+                        "https://readquest-f02-tk.pbp.cs.ui.ac.id/json-book/${bookId}/"
                       );
 
                       var book = bookResponse[0];
@@ -204,7 +204,7 @@ class BookDetailsWidget extends StatelessWidget {
           trailing: ElevatedButton(
           onPressed: () async {
             final response = await request.postJson(
-              "http://127.0.0.1:8000/delete-inventory-flutter/${bookId}/",
+              "https://readquest-f02-tk.pbp.cs.ui.ac.id/delete-inventory-flutter/${bookId}/",
               jsonEncode(<String, dynamic>{
                 'Inventory.inventorybook': [
                   {
