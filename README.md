@@ -2,7 +2,8 @@
 ![Alt text](ReadQuestLogo.png)
 
 ## Link Aplikasi
-
+![ReadQues](https://install.appcenter.ms/users/hafizmuh18/apps/readquest/distribution_groups/public)
+[![Build status](https://build.appcenter.ms/v0.1/apps/6ec97745-22cb-4782-a495-aafdf78e7a2c/branches/main/badge)](https://appcenter.ms)
 
 ### Angota Kelompok
 ------
