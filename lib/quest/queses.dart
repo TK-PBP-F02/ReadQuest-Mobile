@@ -188,9 +188,10 @@ class _QuestPageState extends State<QuestPage> {
                                     Text(
                                       "${snapshot.data![index].fields.name}",
                                       style: const TextStyle(
-                                        fontSize: 16.0,
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white,
+                                        color: Color.fromARGB(255, 137, 137, 137),
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -198,9 +199,10 @@ class _QuestPageState extends State<QuestPage> {
                                     Text(
                                       "Description: ${snapshot.data![index].fields.desc}",
                                       style: const TextStyle(
-                                        fontSize: 12.0,
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
-                                        color: Colors.white70,
+                                        color: Color.fromARGB(255, 137, 137, 137),
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -284,9 +286,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "${snapshot.data![index].fields.name}",
                                     style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -294,9 +297,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "Description: ${snapshot.data![index].fields.desc}",
                                     style: const TextStyle(
-                                      fontSize: 12.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -435,9 +439,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "${snapshot.data![index].fields.name}",
                                     style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -445,9 +450,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "Description: ${snapshot.data![index].fields.desc}",
                                     style: const TextStyle(
-                                      fontSize: 12.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -531,9 +537,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "${snapshot.data![index].fields.name}",
                                     style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -541,9 +548,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "Description: ${snapshot.data![index].fields.desc}",
                                     style: const TextStyle(
-                                      fontSize: 12.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -654,9 +662,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "${snapshot.data![index].fields.name}",
                                     style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -664,9 +673,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "Description: ${snapshot.data![index].fields.desc}",
                                     style: const TextStyle(
-                                      fontSize: 12.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -674,24 +684,27 @@ class _QuestPageState extends State<QuestPage> {
                                     Column(
                                       children: [
                                         Text('${SharedVariable.user?.fields.readed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                         if (SharedVariable.user!.fields.readed >= snapshot.data![index].fields.amount)
                                           const Text("Completed", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,)
                                         else
-                                          const Text("Not Complete", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                          const Text("Not Complete", style: TextStyle(
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                       ],
                                     ),
@@ -699,24 +712,27 @@ class _QuestPageState extends State<QuestPage> {
                                   Column(
                                       children: [
                                         Text('${SharedVariable.user?.fields.buyed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                         if (SharedVariable.user!.fields.buyed >= snapshot.data![index].fields.amount)
-                                          const Text("Completed", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                          const Text("Completed", style: TextStyle(
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,)
                                         else
-                                          const Text("Not Complete", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                          const Text("Not Complete", style: TextStyle(
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                       ],
                                     ),
@@ -725,24 +741,27 @@ class _QuestPageState extends State<QuestPage> {
                                   Column(
                                       children: [
                                         Text('${SharedVariable.user?.fields.reviewed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                         if (SharedVariable.user!.fields.reviewed >= snapshot.data![index].fields.amount)
-                                          const Text("Completed", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                          const Text("Completed", style: TextStyle(
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,)
                                         else
-                                          const Text("Not Complete", style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
-                                    ),
+                                          const Text("Not Complete", style: TextStyle(
+                                        fontFamily: 'Silkscreen',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color.fromARGB(255, 137, 137, 137),
+                                      ),
                                     textAlign: TextAlign.center,),
                                       ],
                                     ),
@@ -826,9 +845,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "${snapshot.data![index].fields.name}",
                                     style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -836,9 +856,10 @@ class _QuestPageState extends State<QuestPage> {
                                   Text(
                                     "Description: ${snapshot.data![index].fields.desc}",
                                     style: const TextStyle(
-                                      fontSize: 12.0,
+                                      fontFamily: 'Silkscreen',
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.white70,
+                                      color: Color.fromARGB(255, 137, 137, 137),
                                     ),
                                     textAlign: TextAlign.center,
                                   ),

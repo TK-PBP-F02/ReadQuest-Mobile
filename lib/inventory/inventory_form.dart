@@ -28,7 +28,7 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
           ),
           backgroundColor: Color.fromARGB(255, 90, 229, 237),
         ),
-        backgroundColor: Color.fromARGB(208, 99, 231, 101),
+        backgroundColor: Color.fromARGB(255, 240, 240, 240),
         // drawer: const LeftDrawer(),
         body: Form(
           key: _formKey,

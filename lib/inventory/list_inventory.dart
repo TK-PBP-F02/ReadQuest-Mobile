@@ -118,7 +118,7 @@ class _InventoryPageState extends State<InventoryPage> {
                               title: Text("Books in Inventory"),
                               backgroundColor: Color.fromARGB(255, 90, 229, 237),
                             ),
-                            backgroundColor: Color.fromARGB(208, 99, 231, 101),
+                            backgroundColor: Color.fromARGB(255, 242, 242, 242),
                             body: Center(
                               child: Text(
                                 "Tidak ada buku di dalam inventoris",
@@ -137,7 +137,7 @@ class _InventoryPageState extends State<InventoryPage> {
                               title: Text("Books in Inventory"),
                               backgroundColor: Color.fromARGB(255, 90, 229, 237),
                             ),
-                            backgroundColor: Color.fromARGB(208, 99, 231, 101),
+                            backgroundColor: Color.fromARGB(255, 239, 239, 239),
                             body: ListView(
                               children: booksInInventory,
                             ),
