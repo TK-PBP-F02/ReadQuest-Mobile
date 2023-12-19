@@ -85,7 +85,7 @@ class _ForumPageDetailState extends State<ForumPageDetail> {
           ],
         ),
         drawer: const Option(),
-        backgroundColor: const Color.fromARGB(208, 99, 231, 101),
+        backgroundColor: Color.fromARGB(208, 219, 219, 219),
         body: SingleChildScrollView(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

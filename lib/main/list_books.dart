@@ -66,10 +66,10 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Books'),
-        backgroundColor: const Color.fromARGB(255, 90, 229, 237),
+        backgroundColor: Color.fromARGB(167, 123, 243, 249),
       ),
       drawer: const Option(),
-      backgroundColor: const Color.fromARGB(208, 99, 231, 101),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Column(
         children: [
           Padding(
@@ -126,7 +126,7 @@ class _ProductPageState extends State<ProductPage> {
                         child: Container(
                           width: itemWidth,
                           padding: const EdgeInsets.all(12.0),
-                          color: const Color.fromARGB(255, 68, 146, 71),
+                          color: Color.fromARGB(255, 111, 218, 239),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,24 +175,34 @@ class EquipmentDetailPage extends StatelessWidget {
         title: Text(equipment.fields.title),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 30),
               CachedNetworkImage(
                 placeholder: (context, url) => const CircularProgressIndicator(),
                 imageUrl: Uri.encodeFull(equipment.fields.imageUrl),
               ),
+              const SizedBox(height: 10),
               Text(equipment.fields.title),
+              const SizedBox(height: 5),
               Text("Author: ${equipment.fields.author}"),
+              const SizedBox(height: 5),
               Text("Published Date: ${equipment.fields.publishedDate}"),
+              const SizedBox(height: 5),
               Text("Publisher: ${equipment.fields.publisher}"),
+              const SizedBox(height: 5),
               Text("Publication Date: ${equipment.fields.publicationDate}"),
+              const SizedBox(height: 5),
               Text("Page: ${equipment.fields.pageCount}"),
+              const SizedBox(height: 5),
               Text("Category: ${equipment.fields.category}"),
+              const SizedBox(height: 30),
               Text("Description: ${equipment.fields.description}"),
+              const SizedBox(height: 30),
               Center(
                 child: ElevatedButton(
                   child: const Text("Back To Equipment List"),

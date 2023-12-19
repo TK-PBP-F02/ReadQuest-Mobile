@@ -14,12 +14,12 @@ class Option extends StatelessWidget {
   Widget build(BuildContext context) {
     if (SharedVariable.user == null) {
       return Drawer(
-        backgroundColor: const Color.fromARGB(255, 130, 185, 93),
+        backgroundColor: const Color.fromARGB(255, 47, 196, 241),
         child: ListView(
           children: [
             const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 78, 192, 176),
+                  color: Color.fromARGB(255, 137, 225, 213),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -108,12 +108,12 @@ class Option extends StatelessWidget {
       );
     } else {
       return Drawer(
-        backgroundColor: const Color.fromARGB(255, 130, 185, 93),
+        backgroundColor: const Color.fromARGB(255, 47, 196, 241),
         child: ListView(
           children: [
             DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 78, 192, 176),
+                  color: Color.fromARGB(255, 137, 225, 213),
                 ),
                 child: SingleChildScrollView(
                   child: Column(

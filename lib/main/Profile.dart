@@ -52,9 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 62, 2, 2),
+        backgroundColor: Color.fromARGB(250, 101, 212, 242),
         title: const Text('ReadQuest'),
       ),
       drawer: const Option(),
@@ -76,7 +76,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                             child: Column(
                               children: [
-                                Text("You need to Login first"),
+                                const Text("You need to Login first"),
+                                SizedBox(height: 40),
                                 ElevatedButton(
                                   onPressed: () {
                                     Navigator.pushReplacement(
@@ -86,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     );
                                   },
-                                  child: Text("HomePage"),
+                                  child: const Text("HomePage"),
                                 ),
                               ],
                             ),
@@ -112,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.person_2_outlined),
+                            const Icon(Icons.person_2_outlined),
                             Text(
                               ' Nama : ${SharedVariable.user?.fields.username}',
                               textAlign: TextAlign.center,
@@ -122,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.control_point_duplicate_outlined),
+                            const Icon(Icons.control_point_duplicate_outlined),
                             Text(
                               ' Point : ${SharedVariable.user?.fields.point}',
                               textAlign: TextAlign.center,
@@ -132,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.monetization_on_outlined),
+                            const Icon(Icons.monetization_on_outlined),
                             Text(
                               ' Buyed : ${SharedVariable.user?.fields.buyed}',
                               textAlign: TextAlign.center,
@@ -142,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.add_box_outlined),
+                            const Icon(Icons.add_box_outlined),
                             Text(
                               ' Reviewed : ${SharedVariable.user?.fields.reviewed}',
                               textAlign: TextAlign.center,
@@ -152,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.menu_book_sharp),
+                            const Icon(Icons.menu_book_sharp),
                             Text(
                               ' Read : ${SharedVariable.user?.fields.readed}',
                               textAlign: TextAlign.center,
@@ -178,9 +179,35 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                         ),
-                        Text(
-                          'Nama : ${SharedVariable.user?.fields.username}',
-                          textAlign: TextAlign.center,
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.person_2_outlined),
+                            Text(
+                              'Authority',
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.person_2_outlined),
+                            Text(
+                              ' Nama : ${SharedVariable.user?.fields.username}',
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.account_balance_outlined),
+                            Text(
+                              ' Authorize the app the way you want to...',
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ],
                     ),
