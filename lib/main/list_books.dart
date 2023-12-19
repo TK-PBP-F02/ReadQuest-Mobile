@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+import 'package:readquest/quest/queses.dart';
 import 'dart:convert';
 
 import 'package:readquest/widgets/drawer.dart';
@@ -39,7 +40,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Books>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/json-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},

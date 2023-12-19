@@ -72,7 +72,7 @@ class _RegLeaderboardPageState extends State<RegLeaderboardPage> {
                   if (_formKey.currentState!.validate()) {
                     // Kirim ke Django dan tunggu respons
                     final response = await request.postJson(
-                        "http://127.0.0.1:8000/leaderboard/regboard-flutter/",
+                        "https://readquest-f02-tk.pbp.cs.ui.ac.id/leaderboard/regboard-flutter/",
                         jsonEncode(<String, String>{
                           'nickname': _nickname,
                         }));
