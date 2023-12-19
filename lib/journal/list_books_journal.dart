@@ -80,7 +80,7 @@ class _JournalPageState extends State<JournalPage> {
     loadBooksFromDjangoService();
   }
   Future<List<Book>> fetchBooks() async {
-  var url = Uri.parse('http://localhost:8000/json/');
+  var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/json/');
   var response = await http.get(
     url,
     headers: {"Content-Type": "application/json"},
@@ -403,7 +403,7 @@ class BookDetailPage extends StatelessWidget {
         title: Text(book.title),
         backgroundColor: Colors.lightBlueAccent,
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       body: SingleChildScrollView(
         child: Center(
           child: Column(

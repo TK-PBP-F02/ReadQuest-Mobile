@@ -51,7 +51,7 @@ class _InventoryPageState extends State<InventoryPage> {
         backgroundColor: Color.fromARGB(255, 90, 229, 237),
       ),
       drawer: const Option(),
-      backgroundColor: Color.fromARGB(208, 99, 231, 101),
+      backgroundColor: Color.fromARGB(255, 240, 240, 240),
       body: FutureBuilder<List<Inventory>>(
       future: fetchInventories(),
       builder: (context, AsyncSnapshot<List<Inventory>> snapshot) {
@@ -61,7 +61,7 @@ class _InventoryPageState extends State<InventoryPage> {
         return Center(
           child: Text(
             "Tidak ada data inventoris",
-            style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 20),
+            style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
           ),
         );
       } else {
@@ -122,7 +122,7 @@ class _InventoryPageState extends State<InventoryPage> {
                             body: Center(
                               child: Text(
                                 "Tidak ada buku di dalam inventoris",
-                                style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 20),
+                                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
                               ),
                             ),
                           ),

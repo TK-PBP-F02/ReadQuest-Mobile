@@ -59,7 +59,7 @@ class Option extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      //builder: (context) => const ProductPage(),
+                      builder: (context) => const ProductPage(),
                     ));
               },
             ),
@@ -234,7 +234,7 @@ class Option extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => JournalPage(books: [],),
+                  builder: (context) => JournalPage(books: []),
                 )
               );
             },

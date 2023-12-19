@@ -91,7 +91,7 @@ class _QuestPageState extends State<QuestPage> {
 
   @override
   Widget build(BuildContext context) {
-    const itemWidth = 200.0;
+    const itemWidth = 290.0;
     if(SharedVariable.user == null){
       return Scaffold(
         appBar: AppBar(
@@ -125,7 +125,7 @@ class _QuestPageState extends State<QuestPage> {
                 Text("World Quest", style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'VT323'))
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Expanded(
               child: FutureBuilder(
                 future: _futureProduct,
@@ -144,62 +144,69 @@ class _QuestPageState extends State<QuestPage> {
                         ],
                       );
                     } else {
-                      return GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: itemWidth,
-                          crossAxisSpacing: 16.0,
-                          mainAxisSpacing: 16.0,
-                        ),
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (_, index) => InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => QuestDetailPage(
-                                  equipment: snapshot.data![index],
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                        child: GridView.builder(
+                          scrollDirection: Axis.horizontal,
+                          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: itemWidth,
+                            crossAxisSpacing: 16.0,
+                            mainAxisSpacing: 16.0,
+                          ),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (_, index) => InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => QuestDetailPage(
+                                    equipment: snapshot.data![index],
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                padding: const EdgeInsets.all(12.0),
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 125, 240, 255),
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${snapshot.data![index].fields.name}",
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 8.0),
+                                    Text(
+                                      "Description: ${snapshot.data![index].fields.desc}",
+                                      style: const TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.white70,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
                             ),
                           ),
                         ),
@@ -236,6 +243,7 @@ class _QuestPageState extends State<QuestPage> {
                       );
                     } else {
                       return GridView.builder(
+                        scrollDirection: Axis.horizontal,
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: itemWidth,
                           crossAxisSpacing: 16.0,
@@ -253,44 +261,47 @@ class _QuestPageState extends State<QuestPage> {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 125, 240, 255),
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "Description: ${snapshot.data![index].fields.desc}",
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -383,6 +394,7 @@ class _QuestPageState extends State<QuestPage> {
                       );
                     } else {
                       return GridView.builder(
+                        scrollDirection: Axis.horizontal,
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: itemWidth,
                           crossAxisSpacing: 16.0,
@@ -400,44 +412,48 @@ class _QuestPageState extends State<QuestPage> {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 125, 240, 255),
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "Description: ${snapshot.data![index].fields.desc}",
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -474,6 +490,7 @@ class _QuestPageState extends State<QuestPage> {
                       );
                     } else {
                       return GridView.builder(
+                        scrollDirection: Axis.horizontal,
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: itemWidth,
                           crossAxisSpacing: 16.0,
@@ -491,44 +508,47 @@ class _QuestPageState extends State<QuestPage> {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 125, 240, 255),
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "Description: ${snapshot.data![index].fields.desc}",
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -593,6 +613,7 @@ class _QuestPageState extends State<QuestPage> {
                       );
                     } else {
                       return GridView.builder(
+                        scrollDirection: Axis.horizontal,
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: itemWidth,
                           crossAxisSpacing: 16.0,
@@ -610,76 +631,124 @@ class _QuestPageState extends State<QuestPage> {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 125, 240, 255),
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                if (snapshot.data![index].fields.goal == "Readded")
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "Description: ${snapshot.data![index].fields.desc}",
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  if (snapshot.data![index].fields.goal == "Readded")
+                                    Column(
+                                      children: [
+                                        Text('${SharedVariable.user?.fields.readed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                        if (SharedVariable.user!.fields.readed >= snapshot.data![index].fields.amount)
+                                          const Text("Completed", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,)
+                                        else
+                                          const Text("Not Complete", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                      ],
+                                    ),
+                                  if (snapshot.data![index].fields.goal == "Buyed")
                                   Column(
-                                    children: [
-                                      Text('${SharedVariable.user?.fields.readed} / ${snapshot.data![index].fields.amount}'),
-                                      if (SharedVariable.user!.fields.readed >= snapshot.data![index].fields.amount)
-                                        const Text("Completed")
-                                      else
-                                        const Text("Not Complete"),
-                                    ],
-                                  ),
-                                if (snapshot.data![index].fields.goal == "Buyed")
-                                Column(
-                                    children: [
-                                      Text('${SharedVariable.user?.fields.buyed} / ${snapshot.data![index].fields.amount}'),
-                                      if (SharedVariable.user!.fields.buyed >= snapshot.data![index].fields.amount)
-                                        const Text("Completed")
-                                      else
-                                        const Text("Not Complete"),
-                                    ],
-                                  ),
-                                  
-                                if (snapshot.data![index].fields.goal == "Review")
-                                Column(
-                                    children: [
-                                      Text('${SharedVariable.user?.fields.reviewed} / ${snapshot.data![index].fields.amount}'),
-                                      if (SharedVariable.user!.fields.reviewed >= snapshot.data![index].fields.amount)
-                                        const Text("Completed")
-                                      else
-                                        const Text("Not Complete"),
-                                    ],
-                                  ),
-                                  
-                              ],
+                                      children: [
+                                        Text('${SharedVariable.user?.fields.buyed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                        if (SharedVariable.user!.fields.buyed >= snapshot.data![index].fields.amount)
+                                          const Text("Completed", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,)
+                                        else
+                                          const Text("Not Complete", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                      ],
+                                    ),
+                                    
+                                  if (snapshot.data![index].fields.goal == "Review")
+                                  Column(
+                                      children: [
+                                        Text('${SharedVariable.user?.fields.reviewed} / ${snapshot.data![index].fields.amount}', style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                        if (SharedVariable.user!.fields.reviewed >= snapshot.data![index].fields.amount)
+                                          const Text("Completed", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,)
+                                        else
+                                          const Text("Not Complete", style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,),
+                                      ],
+                                    ),
+                                    
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -716,6 +785,7 @@ class _QuestPageState extends State<QuestPage> {
                       );
                     } else {
                       return GridView.builder(
+                        scrollDirection: Axis.horizontal,
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: itemWidth,
                           crossAxisSpacing: 16.0,
@@ -733,44 +803,47 @@ class _QuestPageState extends State<QuestPage> {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 125, 240, 255),
-                              borderRadius: BorderRadius.circular(12.0),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].fields.name}",
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 125, 240, 255),
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "Description: ${snapshot.data![index].fields.desc}",
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.white70,
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "Description: ${snapshot.data![index].fields.desc}",
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white70,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -804,8 +877,60 @@ class QuestDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(equipment.fields.name),
-              Text("Description: ${equipment.fields.desc}"),
+              const SizedBox(height: 10),
+              Text(equipment.fields.name,
+                style: const TextStyle(
+                    fontFamily: 'Silkscreen',
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.normal,
+                    color: Color.fromARGB(179, 0, 0, 0),
+                  ),
+                  textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text("Description: ${equipment.fields.desc}",
+                style: const TextStyle(
+                    fontFamily: 'Silkscreen',
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.normal,
+                    color: Color.fromARGB(179, 0, 0, 0),
+                  ),
+                  textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Goal: ${equipment.fields.goal}",
+                style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Point: ${equipment.fields.point}",
+                style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Needed to Complete: ${equipment.fields.amount}",
+                style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
               Center(
                 child: ElevatedButton(
                   child: const Text("Back To Quest List"),
@@ -850,7 +975,6 @@ class QuestDetailPageBook extends StatelessWidget {
         } else {
           // If data is available, continue with the widget tree
           Books book = snapshot.data!;
-          print(book.fields.title);
           return SingleChildScrollView(
             child: Center(
               child: Column(
@@ -861,8 +985,47 @@ class QuestDetailPageBook extends StatelessWidget {
                     imageUrl: Uri.encodeFull(book.fields.imageUrl),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  Text(equipment.fields.name),
-                  Text("Description: ${equipment.fields.desc}"),
+                  SizedBox(height: 30,),
+                  Text(book.fields.title, style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,),
+                SizedBox(height: 15,),
+                  Text(equipment.fields.name, style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,),
+                SizedBox(height: 15,),
+                  Text("Description: ${equipment.fields.desc}", style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,),
+                SizedBox(height: 15,),
+                Text("Goal: ${equipment.fields.goal}", style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,),
+                SizedBox(height: 15,),
+                Text("Point: ${equipment.fields.point}", style: const TextStyle(
+                  fontFamily: 'Silkscreen',
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.normal,
+                  color: Color.fromARGB(179, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,),
+                SizedBox(height: 15,),
                   ElevatedButton(
                     child: const Text("Back To Quest List"),
                     onPressed: () {
