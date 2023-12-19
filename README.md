@@ -3,6 +3,7 @@
 
 ## Link Aplikasi
 
+
 ### Angota Kelompok
 ------
 `Abbilhaidar Farras Zulfikar`  
@@ -28,20 +29,20 @@ Manfaat atau Tujuan ReadQuest :
 
 ### Modul Aplikasi ReadQuest
 ------
-1. *Round Table* : Forum diskusi dimana pengguna dapat berinteraksi satu sama lain, membahas segala macam topik seperti memberi tanggapan atau penilaian pada suatu buku.
+1. *Round Table* `Abbilhaidar Farras Zulfikar`  : Forum diskusi dimana pengguna dapat berinteraksi satu sama lain, membahas segala macam topik seperti memberi tanggapan atau penilaian pada suatu buku.
    - Login : Dapat langsung menambahkan forum baru dan membalas-balas forum dari pengguna lain.
    - Unlogin : Unlogin user dapat melihat forum-forum diskusi dan juga dapat membalas forum pengguna lain, namun harus mengisi username buat tampilannya.
-2. *Inventory* : Isi dari buku-buku wishlist buku yang ingin dibaca, buku yang sedang dibaca ataupun buku yang sudah pernah dibaca oleh pengguna.
+2. *Inventory* `Elena Zahra Kurniawan`  : Isi dari buku-buku wishlist buku yang ingin dibaca, buku yang sedang dibaca ataupun buku yang sudah pernah dibaca oleh pengguna.
    - Login : Berisi data-data buku yang sudah dibaca/ ingin dibaca/ ingin dibelli.
    - Unlogin : Berisi halaman inventory kosong dan memberikan tombol pilihan bagi pengguna untuk membuat akun atau login.
-3. *Make Journey Jurnal* : Pengguna membuat bukunya sendiri yang kemudian dapat dipublish dan dibaca oleh pengguna-pengguna lain.
+3. *Make Journey Jurnal* `Johanes Wisanggeni`  : Pengguna membuat bukunya sendiri yang kemudian dapat dipublish dan dibaca oleh pengguna-pengguna lain.
    - Login : Pengguna dapat membuat buku dan memilih untuk membuat buku yang dibuatnya public atau private.
    - Unlogin : Pengguna yang belum login juga dapat membuat bukunya sendiri namun harus mengisi data dirinya terlebih dahulu untuk melengkapi.
-5. *Quest* : Achivement-achivement atau misi-misi yang dapat dilaksanakan oleh pengguna untuk memperoleh point.
+4. *Quest* `Muhammad Hafiz`  : Achivement-achivement atau misi-misi yang dapat dilaksanakan oleh pengguna untuk memperoleh point.
    - Login : User dapat melihat dan menyelesaikan misi.
    - Unlogin : User yang tidak login hanya dapat melihat deskripsi dari user, tetapi tidak bisa menyelesaikan.
    - Admin : Membuat misi untuk user-user lain.
-7. *Leaderboard Ranking* : Ranking leaderboard untuk tiap user yang mendaftarkan dirinya ke dalam leaderboard untuk bisa di ranking di dalam sistem ranking leaderboard.
+5. *Leaderboard Ranking* `Rifqi Pratama Artyanto`  : Ranking leaderboard untuk tiap user yang mendaftarkan dirinya ke dalam leaderboard untuk bisa di ranking di dalam sistem ranking leaderboard.
    - Login : User dapat mellihat dan memasukan data dirinya untuk masuk ke dalam daftar ranking leaderboard.
    - Unlogin : User yang tidak login, hanya dapat melihat rangking leaderboard tetapi tidak dapat mendaftarkan diri ke dalam leaderboard.
 
@@ -50,6 +51,14 @@ Manfaat atau Tujuan ReadQuest :
 1. *Unlogin* : Pengguna yang tidak login atau tidak memiliki akun, maka pengguna tetap dapat mengakses aplikasi seperti mengakses katalog buku tetapi dengan fitur yang jauh lebih sedikit.  
 2. *Login* : Pengguna yang memiliki akun dan sudah login, maka pengguna dapat memiliki fitur tambahan seperti memiliki wishlist, membuat buku, memulai forum diskusi dan memperoleh point.  
 3. *Admin* : Admin yang memiliki privilage otoritas yang lebih banyak dan lebih tinggi dibanding pengguna-pengguna lain, seperti dapat memeriksa info user, memblokir user, membuat quest dan sebagainya.  
+
+### Integrasi Web
+------
+1. Menerapkan fungsi yang dapat mengembalikan response json di views project django, dan melakukan raouting url nya, sehingga web django dapat memberikan json dari model-model dari django ke flutter, sehingga model tersebut dapat digunakan dan diterapkan di project flutter.
+2. Menerapkan model pada project flutter, untuk dapat mengelola data json yang diambil dari django menjadi object model pada flutter, sehingga data tersebut dapat menjadi model/object yang dapat dimanfaatkan pada flutter.
+3. Pada flutter menambahkan fetch data, sehingga dapat melakukan request POST, GET, serta DELETE untuk mengambil data pada database project django.
+4. Melakukan pengelolahan data yang diterima dari json pada web, sehingga membentuk data tersebut menjadi object model yang sesuai pada flutter.
+5. Object model yang sudah disesuaikan kemudian ditampilkan di dalaam mobile aplication.
 
 ### Berita Acara
 ------
