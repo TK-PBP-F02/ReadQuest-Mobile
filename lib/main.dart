@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:readquest/main/homepage.dart';
 import 'package:readquest/models/book.dart';
 import 'package:readquest/user_var.dart';
+
 void main() async {
   // Fetch the books data
   List<Books> books = await fetchProduct();
