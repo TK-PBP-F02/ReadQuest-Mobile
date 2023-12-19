@@ -159,9 +159,16 @@ class Option extends StatelessWidget {
                     ));
               },
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.chat_outlined),
               title: Text('Discussion'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForumPage(),
+                    ));
+              },
             ),
             const ListTile(
               leading: Icon(Icons.backpack_outlined),

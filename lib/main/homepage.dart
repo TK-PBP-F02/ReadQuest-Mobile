@@ -100,12 +100,25 @@ class Guild extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                item.icon,
-                color: Colors.white,
-                size: MediaQuery.of(context).size.width * 0.1,
-              ),
+            children: <Widget>[
+              if(item.name == 'Books')
+                Image.asset('assets/gif/doc.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Profile')
+                Image.asset('assets/gif/person.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Discussion')
+                Image.asset('assets/gif/discus.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Inventory')
+                Image.asset('assets/gif/stack.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Journal')
+                Image.asset('assets/gif/pencil.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Quest')
+                Image.asset('assets/gif/quest.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Leader Board')
+                Image.asset('assets/gif/globe.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Login')
+                Image.asset('assets/gif/home.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
+              if(item.name == 'Log Out')
+                Image.asset('assets/gif/home.gif', width: MediaQuery.of(context).size.width * 0.1, height: MediaQuery.of(context).size.width * 0.1,),
               const SizedBox(height: 8), // Added spacing
               Flexible(
                 child: Text(

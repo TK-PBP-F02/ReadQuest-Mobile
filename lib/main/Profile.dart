@@ -97,6 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   else if (SharedVariable.user?.fields.role == "PENGGUNA")
                     Column(
                       children: [
+                        Image.asset('assets/gif/person.gif'),
                         const Padding(
                           padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                           child: Text(
@@ -165,6 +166,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Image.asset('assets/gif/person.gif'),
                         const Padding(
                           padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                           child: Text(
