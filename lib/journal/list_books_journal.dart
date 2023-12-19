@@ -144,7 +144,7 @@ class _JournalPageState extends State<JournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User-Created Books'),
+        title: Text('User-Created Books', style: TextStyle(fontFamily: 'Silkscreen')),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),

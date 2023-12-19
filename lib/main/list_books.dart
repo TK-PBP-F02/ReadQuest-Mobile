@@ -71,7 +71,7 @@ class _ProductPageState extends State<ProductPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Books'),
+        title: const Text('Books', style: TextStyle(fontFamily: 'Silkscreen')),
         backgroundColor: Color.fromARGB(167, 123, 243, 249),
       ),
       drawer: const Option(),
@@ -137,7 +137,8 @@ class _ProductPageState extends State<ProductPage> {
                             Text(
                               "${snapshot.data![index].fields.title}",
                               style: const TextStyle(
-                                fontSize: 12.0,
+                                fontFamily: 'VT323',
+                                fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
@@ -241,14 +242,23 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                 placeholder: (context, url) => const CircularProgressIndicator(),
                 imageUrl: Uri.encodeFull('${widget.equipment.fields.imageUrl}'),
               ),
+              SizedBox(height: 15),
               Text("${widget.equipment.fields.title}"),
+              SizedBox(height: 5),
               Text("Author: ${widget.equipment.fields.author}"),
+              SizedBox(height: 5),
               Text("Published Date: ${widget.equipment.fields.publishedDate}"),
+              SizedBox(height: 5),
               Text("Publisher: ${widget.equipment.fields.publisher}"),
+              SizedBox(height: 5),
               Text("Publication Date: ${widget.equipment.fields.publicationDate}"),
+              SizedBox(height: 5),
               Text("Page: ${widget.equipment.fields.pageCount}"),
+              SizedBox(height: 5),
               Text("Category: ${widget.equipment.fields.category}"),
+              SizedBox(height: 10),
               Text("Description: ${widget.equipment.fields.description}"),
+              SizedBox(height: 10),
               Text(""),
               if (SharedVariable.user != null)
                 Form(

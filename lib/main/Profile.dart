@@ -55,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(250, 101, 212, 242),
-        title: const Text('ReadQuest'),
+        title: const Text('ReadQuest', style: TextStyle(fontFamily: 'Silkscreen')),
       ),
       drawer: const Option(),
       body: SingleChildScrollView(
@@ -105,6 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             'Profile User',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: 'Silkscreen',
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                             ),
@@ -117,6 +118,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Nama : ${SharedVariable.user?.fields.username}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -127,6 +131,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Point : ${SharedVariable.user?.fields.point}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -137,6 +144,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Buyed : ${SharedVariable.user?.fields.buyed}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -147,6 +157,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Reviewed : ${SharedVariable.user?.fields.reviewed}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -157,6 +170,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Read : ${SharedVariable.user?.fields.readed}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -176,6 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'Silkscreen',
                             ),
                           ),
                         ),
@@ -186,6 +203,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               'Authority',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -196,6 +216,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Nama : ${SharedVariable.user?.fields.username}',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),
@@ -206,6 +229,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               ' Authorize the app the way you want to...',
                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Silkscreen',
+                              )
                             ),
                           ],
                         ),

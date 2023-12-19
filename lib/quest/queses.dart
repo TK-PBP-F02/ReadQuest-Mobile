@@ -95,7 +95,7 @@ class _QuestPageState extends State<QuestPage> {
     if(SharedVariable.user == null){
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Quest'),
+          title: const Text('Quest', style: TextStyle(fontFamily: 'Silkscreen')),
           backgroundColor: const Color.fromARGB(255, 90, 229, 237),
         ),
         drawer: const Option(),
@@ -889,7 +889,7 @@ class QuestDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(equipment.fields.name),
+        title: Text(equipment.fields.name, style: TextStyle(fontFamily: 'Silkscreen')),
         backgroundColor: Colors.lightBlueAccent,
       ),
       backgroundColor: Color.fromARGB(255, 236, 236, 236),
@@ -977,7 +977,7 @@ class QuestDetailPageBook extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(equipment.fields.name),
+        title: Text(equipment.fields.name, style: TextStyle(fontFamily: 'Silkscreen')),
         backgroundColor: Colors.lightBlueAccent,
       ),
       backgroundColor: const Color.fromARGB(255, 235, 235, 235),

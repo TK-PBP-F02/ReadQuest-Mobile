@@ -23,7 +23,7 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
         appBar: AppBar(
           title: const Center(
             child: Text(
-              'Form Tambah Inventory',
+              'Form Tambah Inventory', style: TextStyle(fontFamily: 'Silkscreen')
             ),
           ),
           backgroundColor: Color.fromARGB(255, 90, 229, 237),

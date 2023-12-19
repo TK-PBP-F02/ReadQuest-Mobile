@@ -30,7 +30,7 @@ class _RegLeaderboardPageState extends State<RegLeaderboardPage> {
         backgroundColor: Colors.lightBlueAccent,
         title: const Text('Register'),
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: const Color.fromARGB(255, 242, 242, 242),
       drawer: const Option(),
       body: Form(
         key: _formKey,

@@ -166,6 +166,7 @@ class Guild extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontFamily: 'VT323'
                   ),
                 ),
               ),
@@ -201,6 +202,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 61, 217, 231),
         title: const Text(
           'ReadQuest',
+          style: TextStyle(fontFamily: 'Silkscreen')
         ),
       ),
       drawer: const Option(),
@@ -218,6 +220,7 @@ class MyHomePage extends StatelessWidget {
                   'Welcome to ReadQuest', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'Silkscreen',
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -230,6 +233,7 @@ class MyHomePage extends StatelessWidget {
                     '${SharedVariable.user?.fields.username}', // Text yang menandakan toko
                     textAlign: TextAlign.center,
                     style: const TextStyle(
+                      fontFamily: 'Silkscreen',
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),

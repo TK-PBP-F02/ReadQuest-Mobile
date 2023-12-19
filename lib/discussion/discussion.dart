@@ -64,7 +64,7 @@ class _ForumPageState extends State<ForumPage> {
           title: const Center(
               child: Text(
             'Forum',
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: TextStyle(fontWeight: FontWeight.w600, fontFamily: 'Silkscreen'),
           )),
           backgroundColor: const Color.fromARGB(255, 90, 229, 237),
           actions: [

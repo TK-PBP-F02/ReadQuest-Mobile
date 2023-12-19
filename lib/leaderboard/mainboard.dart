@@ -67,7 +67,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent,
-          title: const Text('Leaderboard'),
+          title: const Text('Leaderboard', style: TextStyle(fontFamily: 'Silkscreen')),
         ),
         backgroundColor: Color.fromARGB(255, 234, 234, 234),
         drawer: const Option(),
@@ -89,6 +89,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       Text(
                         'TOP USERS',
                         style: TextStyle(
+                          fontFamily: 'Silkscreen',
                           fontSize: 28.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -138,6 +139,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                       child: Text(
                                         readerName,
                                         style: TextStyle(
+                                          fontFamily: 'Silkscreen',
                                           fontSize: 18.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -147,6 +149,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                       child: Text(
                                         '${user.fields.point} points',
                                         style: TextStyle(
+                                          fontFamily: 'Silkscreen',
                                           color: Colors.blue,
                                           fontStyle: FontStyle.italic,
                                         ),
@@ -164,6 +167,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       const Text(
                         'Login as User to participate in the Leaderboard',
                         style: TextStyle(
+                          fontFamily: 'Silkscreen',
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 0, 0, 0),
@@ -204,6 +208,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     Text(
                       'TOP USERS',
                       style: TextStyle(
+                        fontFamily: 'Silkscreen',
                         fontSize: 28.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -253,6 +258,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     child: Text(
                                       readerName,
                                       style: TextStyle(
+                                        fontFamily: 'Silkscreen',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -262,6 +268,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     child: Text(
                                       '${user.fields.point} points',
                                       style: TextStyle(
+                                        fontFamily: 'Silkscreen',
                                         color: Colors.blue,
                                         fontStyle: FontStyle.italic,
                                       ),
@@ -340,6 +347,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     Text(
                       'TOP USERS',
                       style: TextStyle(
+                        fontFamily: 'Silkscreen',
                         fontSize: 28.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -390,6 +398,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     child: Text(
                                       readerName,
                                       style: TextStyle(
+                                        fontFamily: 'Silkscreen',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -399,6 +408,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     child: Text(
                                       '${user.fields.point} points',
                                       style: TextStyle(
+                                        fontFamily: 'Silkscreen',
                                         color: Colors.blue,
                                         fontStyle: FontStyle.italic,
                                       ),

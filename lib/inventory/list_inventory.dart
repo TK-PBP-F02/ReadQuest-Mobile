@@ -47,7 +47,7 @@ class _InventoryPageState extends State<InventoryPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Inventories'),
+        title: const Text('Inventories', style: TextStyle(fontFamily: 'Silkscreen')),
         backgroundColor: Color.fromARGB(255, 90, 229, 237),
       ),
       drawer: const Option(),
