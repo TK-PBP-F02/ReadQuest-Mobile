@@ -67,7 +67,7 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
                       onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                               final response = await request.postJson(
-                              "http://127.0.0.1:8000/create-inventory-flutter/",
+                              "https://readquest-f02-tk.pbp.cs.ui.ac.id/create-inventory-flutter/",
                               jsonEncode(<String, dynamic>{
                                   'Inventory.inventory': [
                                     {

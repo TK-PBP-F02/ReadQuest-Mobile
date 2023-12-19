@@ -94,96 +94,69 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
+            child: FutureBuilder<List<Books>>(
               future: _futureProduct,
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
+              builder: (context, AsyncSnapshot<List<Books>> snapshot) {
+                if (!snapshot.hasData) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
-                  if (!snapshot.hasData) {
-                    return const Column(
-                      children: [
-                        CachedNetworkImage(
-                          placeholder: (context, url) => const CircularProgressIndicator(),
-                          imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                          
-                          httpHeaders: const {
-                            "Access-Control-Allow-Origin": "*",
-                          },
-                        ),
-
-                        
-                        Text(
-                          "${snapshot.data![index].fields.title}",
-                          style: const TextStyle(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 16.0,
+                      mainAxisSpacing: 16.0,
+                    ),
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EquipmentDetailPage(
+                              equipment: snapshot.data![index],
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 8),
-                      ],
-                    );
-                  } else {
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: 16.0,
-                        mainAxisSpacing: 16.0,
-                      ),
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EquipmentDetailPage(
-                                equipment: snapshot.data![index],
+                        );
+                      },
+                      child: Container(
+                        width: itemWidth,
+                        padding: const EdgeInsets.all(12.0),
+                        color: Color.fromARGB(255, 111, 218, 239),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: CachedNetworkImage(
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                             ),
-                          );
-                        },
-                        child: Container(
-                          width: itemWidth,
-                          padding: const EdgeInsets.all(12.0),
-                          color: Color.fromARGB(255, 111, 218, 239),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: CachedNetworkImage(
-                                  placeholder: (context, url) => const CircularProgressIndicator(),
-                                  imageUrl: Uri.encodeFull('${snapshot.data![index].fields.imageUrl}'),
-                                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                                ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              "${snapshot.data![index].fields.title}",
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                "${snapshot.data![index].fields.title}",
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              );
-            }
-          }
-        },
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
 
 class EquipmentDetailPage extends StatefulWidget {
   final Books equipment;
@@ -216,7 +189,7 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
   }
 
   Future<List<Inventory>> _fetchInventories() async {
-    var url = Uri.parse('http://127.0.0.1:8000/get-inventory-all/');
+    var url = Uri.parse('https://readquest-f02-tk.pbp.cs.ui.ac.id/get-inventory-all/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -243,18 +216,19 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-      title: Text(widget.equipment.fields.title),
-      backgroundColor: Colors.lightBlueAccent,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MyHomePage(),
-            ),
-          );
-        },
+        title: Text(widget.equipment.fields.title),
+        backgroundColor: Colors.lightBlueAccent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(),
+              ),
+            );
+          },
+        ),
       ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
@@ -302,14 +276,13 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                                     });
                                   },
                                 ),
-
                               ],
                             ),
                           ),
                           ElevatedButton(
                             onPressed: () async {
                               final response = await request.postJson(
-                                "http://127.0.0.1:8000/add-book-to-inventory-flutter/${widget.equipment.pk}/",
+                                "https://readquest-f02-tk.pbp.cs.ui.ac.id/add-book-to-inventory-flutter/${widget.equipment.pk}/",
                                 jsonEncode(<String, dynamic>{
                                   'Inventory.inventorybook': [
                                     {
@@ -331,7 +304,7 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                                     content: Text("Buku berhasil disimpan di inventoris!"),
                                   ),
                                 );
-                                
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -340,15 +313,13 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                                     ),
                                   ),
                                 );
-
-
                               } else if (response['status'] == 'exist') {
-                                  ScaffoldMessenger.of(context).showSnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text("Anda telah menyimpan buku ini pada inventoris yang Anda pilih"),
                                   ),
                                 );
-                                
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -357,7 +328,7 @@ class _EquipmentDetailPageState extends State<EquipmentDetailPage> {
                                     ),
                                   ),
                                 );
-                                } else {
+                              } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text("Terdapat kesalahan, silakan coba lagi."),

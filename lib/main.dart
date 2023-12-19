@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
               title: 'Read Quest',
               theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 75, 183, 58)),
+                  colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 255, 255, 255)),
                   useMaterial3: true,
               ),
               home: MyHomePage()),
